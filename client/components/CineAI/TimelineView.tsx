@@ -88,7 +88,39 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
   };
 
   const handleTimelineAction = (action: string) => {
-    console.log(`Timeline action: ${action}`);
+    if (!selectedClip) {
+      console.log(`No clip selected for action: ${action}`);
+      return;
+    }
+
+    switch (action) {
+      case "cut":
+        // Split clip at current playhead position
+        console.log(`Cutting clip ${selectedClip.title} at ${project.currentTime}s`);
+        break;
+      case "delete":
+        // Remove selected clip from timeline
+        const updatedTracks = { ...project.tracks };
+        updatedTracks[selectedClip.type] = updatedTracks[selectedClip.type].filter(
+          clip => clip.id !== selectedClip.id
+        );
+        onProjectUpdate({
+          ...project,
+          tracks: updatedTracks
+        });
+        onClipSelect(null as any);
+        break;
+      case "copy":
+        // Copy selected clip
+        console.log(`Copying clip ${selectedClip.title}`);
+        break;
+      case "layers":
+        // Show/hide layer controls
+        console.log("Toggle layer controls");
+        break;
+      default:
+        console.log(`Timeline action: ${action}`);
+    }
   };
 
   const handleClipLibraryAction = (action: string) => {
