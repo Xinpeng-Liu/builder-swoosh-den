@@ -25,6 +25,7 @@ interface SidebarProps {
 
 export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
   const [activeItem, setActiveItem] = useState(propActiveItem || "scenes");
+  const navigate = useNavigate();
 
   const menuItems: SidebarItem[] = [
     {
