@@ -87,14 +87,20 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
     window.addEventListener("mouseup", onUp);
   };
 
-  const getClipWidth = (duration: string) => {
-    const seconds = parseFloat(duration.split(":")[1]) + parseFloat(duration.split(":")[0]) * 60;
-    return (seconds / 120) * 800; // Assuming 800px timeline width for 2 minutes
+  const parseDurationToSeconds = (dur: string): number => {
+    const [m, s] = dur.split(":").map(Number);
+    return (m || 0) * 60 + (s || 0);
   };
 
-  const getClipPosition = (startTime: number) => {
-    return (startTime / 120) * 800;
+  const secondsToPx = (sec: number) => (sec / project.duration) * trackWidth;
+  const pxToSeconds = (px: number) => (px / trackWidth) * project.duration;
+
+  const getClipWidth = (duration: string) => {
+    const seconds = parseDurationToSeconds(duration);
+    return secondsToPx(seconds);
   };
+
+  const getClipPosition = (startTime: number) => secondsToPx(startTime);
 
   const handleTimelineAction = (action: string) => {
     if (!selectedClip) {
