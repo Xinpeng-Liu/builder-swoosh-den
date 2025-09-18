@@ -121,21 +121,21 @@ export default function Characters() {
         <Sidebar activeItem="characters" />
         
         {/* Main Content Area */}
-        <div className="flex flex-1">
+        <div className="flex flex-1 overflow-hidden">
           {/* Characters View */}
-          <div className="flex-1">
-            <CharactersView 
-              characters={mockCharacters} 
+          <div className="flex-1 overflow-y-auto">
+            <CharactersView
+              characters={mockCharacters}
               onCharacterSelect={handleCharacterSelect}
               selectedCharacterId={selectedCharacter?.id}
             />
           </div>
-          
+
           {/* Edit Panel */}
           {isEditPanelOpen && selectedCharacter && (
-            <div className="w-96 border-l border-[hsl(var(--cine-border))]">
-              <EditCharacterPanel 
-                character={selectedCharacter} 
+            <div className="w-96 border-l border-[hsl(var(--cine-border))] overflow-hidden">
+              <EditCharacterPanel
+                character={selectedCharacter}
                 onClose={handleCloseEdit}
                 onCharacterUpdate={(updatedCharacter) => setSelectedCharacter(updatedCharacter)}
               />
