@@ -106,9 +106,10 @@ export function EditCharacterPanel({ character, onClose, onCharacterUpdate }: Ed
         </button>
       </div>
 
-      {/* Form */}
-      <div className="flex-1 p-6 overflow-y-auto">
-        <form className="space-y-6">
+      {/* Form + Preview (scrollable) */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-6">
+          <form className="space-y-6">
           {/* Name */}
           <div className="space-y-2">
             <Label htmlFor="name" className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
@@ -278,6 +279,56 @@ export function EditCharacterPanel({ character, onClose, onCharacterUpdate }: Ed
             </div>
           </div>
         </form>
+
+          {/* Character Profile Preview */}
+          <div className="mt-6 border-t border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))] p-6">
+            <h4 className="text-sm font-medium text-white mb-3">
+              Character Profile Preview
+            </h4>
+            <div className="flex gap-4">
+              <div className="w-16 h-16 rounded bg-[hsl(var(--cine-card))] overflow-hidden flex-shrink-0">
+                <img
+                  src={editedCharacter.imageUrl}
+                  alt={editedCharacter.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h5 className="text-white font-medium mb-1">{editedCharacter.name}</h5>
+                <span className="inline-block px-2 py-0.5 rounded text-xs text-white bg-[hsl(var(--cine-purple))] mb-2">
+                  {editedCharacter.role}
+                </span>
+                <p className="text-xs text-[hsl(var(--cine-text-muted))] line-clamp-2">
+                  {editedCharacter.appearance}
+                </p>
+                {editedCharacter.personality.length > 0 && (
+                  <div className="mt-2">
+                    <span className="text-xs font-medium text-[hsl(var(--cine-text-secondary))]">Personality</span>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {editedCharacter.personality.slice(0, 3).map((trait) => (
+                        <span key={trait} className="text-xs text-[hsl(var(--cine-text-muted))]">
+                          {trait}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {editedCharacter.actions.length > 0 && (
+                  <div className="mt-2">
+                    <span className="text-xs font-medium text-[hsl(var(--cine-text-secondary))]">Key Actions</span>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {editedCharacter.actions.slice(0, 3).map((action) => (
+                        <span key={action} className="text-xs text-[hsl(var(--cine-text-muted))]">
+                          {action}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Footer Actions */}
@@ -296,54 +347,6 @@ export function EditCharacterPanel({ character, onClose, onCharacterUpdate }: Ed
         </Button>
       </div>
 
-      {/* Character Profile Preview */}
-      <div className="p-6 border-t border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))]">
-        <h4 className="text-sm font-medium text-white mb-3">
-          Character Profile Preview
-        </h4>
-        <div className="flex gap-4">
-          <div className="w-16 h-16 rounded bg-[hsl(var(--cine-card))] overflow-hidden flex-shrink-0">
-            <img 
-              src={editedCharacter.imageUrl} 
-              alt={editedCharacter.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h5 className="text-white font-medium mb-1">{editedCharacter.name}</h5>
-            <span className="inline-block px-2 py-0.5 rounded text-xs text-white bg-[hsl(var(--cine-purple))] mb-2">
-              {editedCharacter.role}
-            </span>
-            <p className="text-xs text-[hsl(var(--cine-text-muted))] line-clamp-2">
-              {editedCharacter.appearance}
-            </p>
-            {editedCharacter.personality.length > 0 && (
-              <div className="mt-2">
-                <span className="text-xs font-medium text-[hsl(var(--cine-text-secondary))]">Personality</span>
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {editedCharacter.personality.slice(0, 3).map((trait) => (
-                    <span key={trait} className="text-xs text-[hsl(var(--cine-text-muted))]">
-                      {trait}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-            {editedCharacter.actions.length > 0 && (
-              <div className="mt-2">
-                <span className="text-xs font-medium text-[hsl(var(--cine-text-secondary))]">Key Actions</span>
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {editedCharacter.actions.slice(0, 3).map((action) => (
-                    <span key={action} className="text-xs text-[hsl(var(--cine-text-muted))]">
-                      {action}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
