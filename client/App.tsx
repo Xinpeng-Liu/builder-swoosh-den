@@ -11,6 +11,7 @@ import CineAI from "./pages/CineAI";
 import Characters from "./pages/Characters";
 import Plot from "./pages/Plot";
 import Clips from "./pages/Clips";
+import Timeline from "./pages/Timeline";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
