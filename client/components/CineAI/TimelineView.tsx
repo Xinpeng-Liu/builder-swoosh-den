@@ -435,7 +435,11 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 e.dataTransfer.setData("text/plain", payload);
               }}
             >
-              <div className="relative h-20">
+              <div className="relative h-20" draggable onDragStart={(e) => {
+                const payload = JSON.stringify({ ...clip, type: "video" });
+                e.dataTransfer.setData("application/json", payload);
+                e.dataTransfer.setData("text/plain", payload);
+              }}>
                 <img
                   src={clip.imageUrl}
                   alt={clip.title}
