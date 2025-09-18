@@ -3,3 +3,8 @@ export { Sidebar } from './Sidebar';
 export { ScenesView } from './ScenesView';
 export { EditPanel } from './EditPanel';
 export { PreviewPanel } from './PreviewPanel';
+export { CharactersView } from './CharactersView';
+export { EditCharacterPanel } from './EditCharacterPanel';
+export { PlotView } from './PlotView';
+export { EditPlotPanel } from './EditPlotPanel';
+export { ScriptPreview } from './ScriptPreview';
