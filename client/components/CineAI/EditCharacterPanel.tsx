@@ -41,6 +41,10 @@ export function EditCharacterPanel({ character, onClose, onCharacterUpdate }: Ed
   const [newPersonalityTag, setNewPersonalityTag] = useState("");
   const [voiceVolume, setVoiceVolume] = useState([0.08]);
 
+  React.useEffect(() => {
+    setEditedCharacter(character);
+  }, [character]);
+
   const availableActions = [
     "Hacking", "Stealth", "Fighting", "Analyzing", "Running", "Investigation", 
     "Combat", "Manipulation", "Strategy", "Intimidation", "Research", "Teaching", 
