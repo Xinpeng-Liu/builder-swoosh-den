@@ -60,7 +60,7 @@ export default function Clips() {
         {/* Main Content Area */}
         <div className="flex flex-1">
           {/* Clips View */}
-          <div className="flex-1 border-r border-[hsl(var(--cine-border))]">
+          <div className="flex-1 border-r border-[hsl(var(--cine-border))] overflow-y-auto">
             <ClipsView 
               project={currentProject}
               onProjectUpdate={setCurrentProject}
@@ -68,7 +68,7 @@ export default function Clips() {
           </div>
           
           {/* Clip Preview Panel */}
-          <div className="w-96 bg-[hsl(var(--cine-sidebar))]">
+          <div className="w-96 bg-[hsl(var(--cine-sidebar))] overflow-y-auto">
             <ClipPreview project={currentProject} />
           </div>
         </div>
