@@ -49,8 +49,11 @@ export function ClipsView({ project, onProjectUpdate }: ClipsViewProps) {
   ];
 
   const mockCharacters = [
-    { id: "1", title: "Nova Chen", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=116" },
-    { id: "2", title: "Victor Crane", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=116" },
+    { id: "1", title: "Nova Chen", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/5821b6aa396b0511f311c392689060b59165fad7?width=116" },
+    { id: "2", title: "Victor Crane", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/327c573275f90714e5fc082eb19efa30fb5af628?width=116" },
+    { id: "3", title: "Dr. Elias Grey", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/a4e4a4142936de335afe5db4326fa663156cf842?width=116" },
+    { id: "4", title: "Maya Rodriguez", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/bfab3bf8103c4269e3dc36705e7b3b4d55de5f86?width=116" },
+    { id: "5", title: "Cipher", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/9c9f023457482aacb444e53278bc0ce55e5370a5?width=116" },
   ];
 
   const mockPlotBeats = [
