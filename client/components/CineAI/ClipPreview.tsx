@@ -26,32 +26,54 @@ interface GenerationStat {
 export function ClipPreview({ project }: ClipPreviewProps) {
   const generationHistory: GenerationHistoryItem[] = [
     {
-      id: "1",
+      id: "gh_009",
       timestamp: "Just now",
       status: "processing",
-      title: "Lab Discovery Scene",
-      description: "Alex's laboratory scene anomaly"
+      title: "Character Intro — Nova at Neon Alley",
+      description: "Rendering 1080p MP4 with Cyberpunk + Steadicam shots…",
+      length: "0:18",
+      resolution: "1920×1080",
+      size: "—"
     },
     {
-      id: "2", 
-      timestamp: "5 hours ago",
-      status: "error",
-      title: "Scene 6 Generation",
-      description: "Failed"
-    },
-    {
-      id: "3",
-      timestamp: "3 hours ago", 
+      id: "gh_008",
+      timestamp: "18 min ago",
       status: "success",
-      title: "Scene 5 Generation",
-      description: "Approved"
+      title: "Chase Through Market — Cipher POV",
+      description: "Wide → Tracking → Close Up. Looks sharp with HDR enabled.",
+      length: "0:22",
+      resolution: "1920×1080",
+      size: "28 MB"
     },
     {
-      id: "4",
-      timestamp: "2 hours ago",
-      status: "success", 
-      title: "Scene 1 Generation",
-      description: "Approved"
+      id: "gh_007",
+      timestamp: "1 hr ago",
+      status: "success",
+      title: "Victor’s Monologue — Warehouse",
+      description: "Low-angle + High contrast noir. Approved for timeline.",
+      length: "0:15",
+      resolution: "1920×1080",
+      size: "19 MB"
+    },
+    {
+      id: "gh_006",
+      timestamp: "2 hr ago",
+      status: "error",
+      title: "Drone Establishing Shot",
+      description: "Aerial shot failed checksum. Retrying suggested.",
+      length: "0:08",
+      resolution: "3840×2160",
+      size: "—"
+    },
+    {
+      id: "gh_005",
+      timestamp: "Yesterday",
+      status: "success",
+      title: "Maya Tech Lab Insert",
+      description: "Macro board detail + rack focus. Graded teal/orange.",
+      length: "0:12",
+      resolution: "1920×1080",
+      size: "14 MB"
     }
   ];
 
