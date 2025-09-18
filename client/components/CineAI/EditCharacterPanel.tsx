@@ -92,7 +92,7 @@ export function EditCharacterPanel({ character, onClose, onCharacterUpdate }: Ed
   };
 
   return (
-    <div className="h-full bg-[hsl(var(--cine-bg))] flex flex-col">
+    <div className="h-full bg-[hsl(var(--cine-bg))] flex flex-col overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-[hsl(var(--cine-border))] flex items-center justify-between">
         <h2 className="text-xl font-normal text-white font-['Lexend']">
