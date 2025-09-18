@@ -1,4 +1,5 @@
 import { Plus, Download, Eye, MoreHorizontal } from "lucide-react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -39,12 +40,12 @@ export function PlotView({ plotPoints, onPlotPointSelect, selectedPlotPointId }:
         
         <div className="flex items-center gap-2">
           <span className="text-sm text-[hsl(var(--cine-text-muted))]">Sort:</span>
-          <select className="bg-transparent text-[hsl(var(--cine-text-muted))] text-sm border-none outline-none">
+          <select className="bg-[hsl(var(--cine-card))] border border-[hsl(var(--cine-border))] text-white text-sm rounded-md px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-purple))]">
             <option>Manual</option>
             <option>Chronological</option>
             <option>Character</option>
           </select>
-          <Button 
+          <Button
             className="bg-[hsl(var(--cine-purple))] hover:bg-[hsl(var(--cine-purple))]/90 text-white h-8 px-3 gap-2"
             size="sm"
           >
@@ -92,14 +93,16 @@ function PlotPointCard({ plotPoint, index, isSelected, onClick }: PlotPointCardP
   const typeColor = typeColors[plotPoint.type] || "bg-gray-500";
 
   return (
-    <div 
+    <div
       className={cn(
-        "p-3 rounded-lg border cursor-pointer transition-all hover:border-[hsl(var(--cine-purple))]/50",
+        "p-3 rounded-lg border cursor-pointer transition-all hover:border-[hsl(var(--cine-purple))]/50 hover:bg-[hsl(var(--cine-card))] focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-purple))]",
         "bg-[hsl(var(--cine-sidebar))]",
-        isSelected 
-          ? "border-[hsl(var(--cine-blue))]" 
+        isSelected
+          ? "border-[hsl(var(--cine-blue))]"
           : "border-[hsl(var(--cine-border))]"
       )}
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
       onClick={onClick}
     >
       <div className="flex items-start justify-between mb-2">
