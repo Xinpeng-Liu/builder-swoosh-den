@@ -12,3 +12,4 @@ export { ClipsView } from './ClipsView';
 export { ClipPreview } from './ClipPreview';
 export { TimelineView } from './TimelineView';
 export { FilmSettingsPanel } from './FilmSettingsPanel';
+export { ExportView } from './ExportView';
