@@ -391,10 +391,9 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
               className="min-w-34 bg-[hsl(var(--cine-card))] rounded-md overflow-hidden cursor-grab hover:bg-[hsl(var(--cine-card))]/80 transition-colors"
               draggable
               onDragStart={(e) => {
-                e.dataTransfer.setData("application/json", JSON.stringify({
-                  ...clip,
-                  type: "video"
-                }));
+                const payload = JSON.stringify({ ...clip, type: "video" });
+                e.dataTransfer.setData("application/json", payload);
+                e.dataTransfer.setData("text/plain", payload);
               }}
             >
               <div className="relative h-20">
