@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Palette, User, BookOpen, Camera, Film, Maximize, Square, Circle, Eye, Video, Monitor, Smartphone, Tablet, Aperture, Focus, Move3d, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ClipProject, ClipElement, CameraShot, VisualStyle } from "@/pages/Clips";
