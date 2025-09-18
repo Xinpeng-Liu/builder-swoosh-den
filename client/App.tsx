@@ -26,6 +26,7 @@ const App = () => (
           <Route path="/cineai" element={<CineAI />} />
           <Route path="/characters" element={<Characters />} />
           <Route path="/plot" element={<Plot />} />
+          <Route path="/clips" element={<Clips />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
