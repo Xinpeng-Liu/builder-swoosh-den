@@ -30,7 +30,7 @@ export function PlotView({ plotPoints, onPlotPointSelect, selectedPlotPointId }:
       <div className="p-4 border-b border-[hsl(var(--cine-border))] flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="sm" className="text-[hsl(var(--cine-text-muted))] hover:text-white p-2">
-            <Export className="w-4 h-4" />
+            <Download className="w-4 h-4" />
           </Button>
           <Button variant="ghost" size="sm" className="text-[hsl(var(--cine-text-muted))] hover:text-white p-2">
             <Eye className="w-4 h-4" />
