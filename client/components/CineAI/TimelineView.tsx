@@ -62,21 +62,29 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
 
   const handlePlayheadDrag = (e: React.MouseEvent) => {
     setIsDragging(true);
-    const rect = e.currentTarget.parentElement?.getBoundingClientRect();
-    if (rect) {
-      const newPosition = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-      setPlayheadPosition(newPosition);
+    const container = (e.currentTarget as HTMLDivElement).parentElement as HTMLElement | null;
+    const rect = container?.getBoundingClientRect();
+    if (!rect) return;
 
-      // Calculate time based on position
+    const updateFromClientX = (clientX: number) => {
+      const newPosition = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      setPlayheadPosition(newPosition);
       const timePercentage = newPosition / rect.width;
       const newTime = timePercentage * project.duration;
+      onProjectUpdate({ ...project, currentTime: newTime });
+    };
 
-      // Update project current time
-      onProjectUpdate({
-        ...project,
-        currentTime: newTime
-      });
-    }
+    updateFromClientX(e.clientX);
+
+    const onMove = (ev: MouseEvent) => updateFromClientX(ev.clientX);
+    const onUp = () => {
+      setIsDragging(false);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
   };
 
   const getClipWidth = (duration: string) => {
