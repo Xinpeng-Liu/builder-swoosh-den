@@ -103,8 +103,14 @@ export function ClipsView({ project, onProjectUpdate }: ClipsViewProps) {
   };
 
   const handleGenerateClip = () => {
-    // Placeholder for generation logic
-    console.log("Generating clip with project:", project);
+    // Check if all required elements are present
+    if (!project.scene || !project.character || !project.plotBeat) {
+      alert("Please select a scene, character, and plot beat before generating a clip.");
+      return;
+    }
+
+    // Show generation progress (in a real app, this would trigger actual generation)
+    alert(`Generating clip with:\nScene: ${project.scene.title}\nCharacter: ${project.character.title}\nPlot Beat: ${project.plotBeat.title}\nCamera Shots: ${project.cameraShots.length}\nStyles: ${project.visualStyles.length}`);
   };
 
   return (
