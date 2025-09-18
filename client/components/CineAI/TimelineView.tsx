@@ -173,9 +173,17 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
             <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">Video</span>
           </div>
           <div
-            className="flex-1 relative p-2"
-            onDragOver={(e) => e.preventDefault()}
+            className={cn(
+              "flex-1 relative p-2 transition-colors",
+              isDragOver && "bg-purple-500/10 border-2 border-dashed border-purple-500"
+            )}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setIsDragOver(true);
+            }}
+            onDragLeave={() => setIsDragOver(false)}
             onDrop={(e) => {
+              setIsDragOver(false);
               e.preventDefault();
               try {
                 const clipData = JSON.parse(e.dataTransfer.getData("application/json"));
