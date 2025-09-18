@@ -117,7 +117,7 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
           ...project,
           tracks: updatedTracks
         });
-        onClipSelect(null as any);
+        onClipSelect(null);
         break;
       case "copy":
         // Copy selected clip
