@@ -314,7 +314,7 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
           <div className="w-20 bg-[hsl(var(--cine-card))] border-r border-[hsl(var(--cine-border))] flex items-center justify-center">
             <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">Text</span>
           </div>
-          <div className="flex-1 relative p-2">
+          <div className="flex-1 relative p-2 overflow-hidden">
             {project.tracks.text.map((clip) => (
               <div
                 key={clip.id}
