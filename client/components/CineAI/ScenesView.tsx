@@ -1,4 +1,5 @@
 import { Plus, MapPin, Clock } from "lucide-react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -78,14 +79,16 @@ function SceneCard({ scene, isSelected, onClick }: SceneCardProps) {
   const timeColor = timeColors[scene.timeOfDay] || "bg-gray-500";
 
   return (
-    <div 
+    <div
       className={cn(
-        "p-4 rounded-lg border cursor-pointer transition-all hover:border-[hsl(var(--cine-purple))]/50",
+        "p-4 rounded-lg border cursor-pointer transition-all hover:border-[hsl(var(--cine-purple))]/50 hover:bg-[hsl(var(--cine-card))] focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-purple))]",
         "bg-[hsl(var(--cine-sidebar))]",
-        isSelected 
-          ? "border-[hsl(var(--cine-blue))]" 
+        isSelected
+          ? "border-[hsl(var(--cine-blue))]"
           : "border-[hsl(var(--cine-border))]"
       )}
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
       onClick={onClick}
     >
       <div className="flex gap-4">
