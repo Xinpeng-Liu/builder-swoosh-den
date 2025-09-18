@@ -13,6 +13,9 @@ interface GenerationHistoryItem {
   status: "success" | "error" | "processing";
   title: string;
   description: string;
+  length?: string;
+  resolution?: string;
+  size?: string;
 }
 
 interface GenerationStat {
