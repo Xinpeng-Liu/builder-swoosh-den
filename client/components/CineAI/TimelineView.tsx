@@ -302,7 +302,7 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 <div className="h-10 bg-[hsl(var(--cine-card))] flex items-center justify-center">
                   <div className="flex items-center justify-center">
                     {/* Audio waveform visualization */}
-                    <svg width="80" height="16" viewBox="0 0 81 16" className="text-purple-500">
+                    <svg width="80" height="16" viewBox="0 0 81 16" className="text-[hsl(var(--cine-border))] opacity-50">
                       <path 
                         d="M0.25 8C2.91667 5.33333 5.58333 5.33333 8.25 8C10.9167 10.6667 13.5833 10.6667 16.25 8C18.9167 5.33333 21.5833 5.33333 24.25 8C26.9167 10.6667 29.5833 10.6667 32.25 8C34.9167 5.33333 37.5833 5.33333 40.25 8C42.9167 10.6667 45.5833 10.6667 48.25 8C50.9167 5.33333 53.5833 5.33333 56.25 8C58.9167 10.6667 61.5833 10.6667 64.25 8C66.9167 5.33333 69.5833 5.33333 72.25 8C74.9167 10.6667 77.5833 10.6667 80.25 8" 
                         stroke="currentColor" 
