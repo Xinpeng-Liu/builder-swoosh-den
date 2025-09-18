@@ -29,9 +29,9 @@ export default function Characters() {
       id: "1",
       name: "Nova Chen",
       role: "Protagonist",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=192",
+      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/5821b6aa396b0511f311c392689060b59165fad7?width=423",
       appearance: "Cybernetic officer with determined expression. Short hair with cybernetic enhancements.",
-      personality: ["Determined", "Brave", "Tech-savvy"],
+      personality: ["Cybernetic", "Determined", "Short hair"],
       voice: "Clear and confident",
       actions: ["Investigation", "Combat", "Hacking"],
       details: {
@@ -40,12 +40,12 @@ export default function Characters() {
       },
     },
     {
-      id: "2", 
+      id: "2",
       name: "Victor Crane",
       role: "Antagonist",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=192",
+      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/327c573275f90714e5fc082eb19efa30fb5af628?width=423",
       appearance: "Elderly businessman with calculating expression and formal suit.",
-      personality: ["Calculating", "Ruthless", "Intelligent"],
+      personality: ["Scarred", "Calculating", "Suit"],
       voice: "Deep and commanding",
       actions: ["Manipulation", "Strategy", "Intimidation"],
       details: {
@@ -55,11 +55,11 @@ export default function Characters() {
     },
     {
       id: "3",
-      name: "Dr. Elias Grey", 
+      name: "Dr. Elias Grey",
       role: "Mentor",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=192",
+      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/a4e4a4142936de335afe5db4326fa663156cf842?width=423",
       appearance: "Elderly scientist with wise eyes and grey beard. Often seen in research attire.",
-      personality: ["Wise", "Patient", "Knowledgeable"],
+      personality: ["Elderly", "Wise", "Bearded"],
       voice: "Warm and measured",
       actions: ["Research", "Teaching", "Analysis"],
       details: {
@@ -70,10 +70,10 @@ export default function Characters() {
     {
       id: "4",
       name: "Maya Rodriguez",
-      role: "Supporting",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=192", 
+      role: "Ally",
+      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/bfab3bf8103c4269e3dc36705e7b3b4d55de5f86?width=423",
       appearance: "Data tech specialist with confident demeanor and modern styling.",
-      personality: ["Confident", "Loyal", "Skilled"],
+      personality: ["Curly hair", "Tech-savvy", "Confident"],
       voice: "Energetic and clear",
       actions: ["Data Analysis", "Support", "Communication"],
       details: {
@@ -83,10 +83,10 @@ export default function Characters() {
     {
       id: "5",
       name: "Cipher",
-      role: "Supporting", 
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=192",
+      role: "Supporting",
+      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/9c9f023457482aacb444e53278bc0ce55e5370a5?width=423",
       appearance: "A mysterious figure always wearing a dark hoodie that obscures most of their face. Slim build, moves with purpose and agility. Often seen in the shadows of neon-lit streets. Has a cybernetic implant visible on one hand.",
-      personality: ["Mysterious", "Intelligent", "Resourceful"],
+      personality: ["Hooded", "Mysterious", "Hacker"],
       voice: "Low and distorted",
       actions: ["Hacking", "Stealth", "Fighting", "Analyzing", "Running"],
       details: {
