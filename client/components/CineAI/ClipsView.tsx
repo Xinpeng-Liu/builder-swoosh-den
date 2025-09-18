@@ -73,6 +73,20 @@ export function ClipsView({ project, onProjectUpdate }: ClipsViewProps) {
     });
   };
 
+  const handleItemSelect = (item: any, type: "scene" | "character" | "plotBeat") => {
+    const element: ClipElement = {
+      id: item.id,
+      type,
+      title: item.title,
+      imageUrl: item.imageUrl
+    };
+
+    onProjectUpdate({
+      ...project,
+      [type]: element
+    });
+  };
+
   const handleCameraShotToggle = (shotId: string) => {
     const updatedShots = project.cameraShots.find(s => s.id === shotId)
       ? project.cameraShots.filter(s => s.id !== shotId)
