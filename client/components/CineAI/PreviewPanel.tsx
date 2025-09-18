@@ -30,8 +30,8 @@ export function PreviewPanel({ scene }: PreviewPanelProps) {
       {/* Preview Image */}
       <div className="p-4">
         <div className="w-full h-32 bg-[hsl(var(--cine-card))] rounded-md overflow-hidden">
-          <img 
-            src={scene.imageUrl} 
+          <img
+            src={scene.imageUrl}
             alt={scene.title}
             className="w-full h-full object-cover"
           />
@@ -40,9 +40,7 @@ export function PreviewPanel({ scene }: PreviewPanelProps) {
 
       {/* Text Prompt Section */}
       <div className="px-4 pb-4">
-        <h4 className="text-sm font-medium text-white mb-2">
-          Text Prompt
-        </h4>
+        <h4 className="text-sm font-medium text-white mb-2">Text Prompt</h4>
         <div className="p-3 bg-[hsl(var(--cine-card))] rounded-md">
           <div className="text-xs text-[hsl(var(--cine-text-secondary))] leading-relaxed space-y-1">
             <p>A cozy cafe interior in the morning.</p>
@@ -57,7 +55,7 @@ export function PreviewPanel({ scene }: PreviewPanelProps) {
             <p>sense of comfort and relaxation.</p>
           </div>
         </div>
-        
+
         {/* Copy Prompt Button */}
         <Button
           variant="outline"
@@ -70,9 +68,7 @@ export function PreviewPanel({ scene }: PreviewPanelProps) {
 
       {/* Options Section */}
       <div className="px-4 pb-4">
-        <h4 className="text-sm font-medium text-white mb-2">
-          Options
-        </h4>
+        <h4 className="text-sm font-medium text-white mb-2">Options</h4>
         <div className="space-y-2">
           {/* Generate Clip */}
           <button className="w-full flex items-center justify-between p-2 bg-[hsl(var(--cine-card))] hover:bg-[hsl(var(--cine-card))]/80 rounded-md transition-colors group">

@@ -6,7 +6,7 @@ import {
   Clock,
   Settings,
   FileText,
-  Lightbulb
+  Lightbulb,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -93,7 +93,10 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
         <ul className="space-y-1">
           {menuItems.map((item) => {
             const href = getPathForItem(item.id);
-            const isActive = (propActiveItem ? propActiveItem === item.id : activeItem === item.id) || item.isActive;
+            const isActive =
+              (propActiveItem
+                ? propActiveItem === item.id
+                : activeItem === item.id) || item.isActive;
             return (
               <li key={item.id}>
                 <a
@@ -104,7 +107,7 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
                     "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-blue))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--cine-sidebar))]",
                     isActive
                       ? "bg-[hsl(var(--cine-blue))] text-white"
-                      : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white"
+                      : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white",
                   )}
                 >
                   <span className="flex-shrink-0">{item.icon}</span>

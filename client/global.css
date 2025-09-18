@@ -53,17 +53,17 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* CineAI Dark Theme Colors */
-    --cine-bg: 217 20% 6%;          /* #0F1117 */
-    --cine-sidebar: 220 15% 8%;     /* #151824 */
-    --cine-card: 220 14% 11%;       /* #1C202E */
-    --cine-border: 220 13% 15%;     /* #252A3A */
-    --cine-purple: 258 90% 66%;     /* #8B5CF6 */
-    --cine-text: 0 0% 100%;         /* #FFFFFF */
-    --cine-text-muted: 220 9% 46%;  /* #9CA3AF */
+    --cine-bg: 217 20% 6%; /* #0F1117 */
+    --cine-sidebar: 220 15% 8%; /* #151824 */
+    --cine-card: 220 14% 11%; /* #1C202E */
+    --cine-border: 220 13% 15%; /* #252A3A */
+    --cine-purple: 258 90% 66%; /* #8B5CF6 */
+    --cine-text: 0 0% 100%; /* #FFFFFF */
+    --cine-text-muted: 220 9% 46%; /* #9CA3AF */
     --cine-text-secondary: 218 11% 65%; /* #D1D5DB */
-    --cine-blue: 217 91% 60%;       /* #3B82F6 */
-    --cine-orange: 25 95% 53%;      /* #F97316 */
-    --cine-pink: 328 86% 70%;       /* #EC4899 */
+    --cine-blue: 217 91% 60%; /* #3B82F6 */
+    --cine-orange: 25 95% 53%; /* #F97316 */
+    --cine-pink: 328 86% 70%; /* #EC4899 */
   }
 
   .dark {
@@ -132,7 +132,9 @@
     @apply border-border;
   }
 
-  html, body, #root {
+  html,
+  body,
+  #root {
     height: 100%;
   }
 
@@ -146,43 +148,43 @@
   .cine-bg {
     background-color: hsl(var(--cine-bg));
   }
-  
+
   .cine-sidebar {
     background-color: hsl(var(--cine-sidebar));
   }
-  
+
   .cine-card {
     background-color: hsl(var(--cine-card));
   }
-  
+
   .cine-border {
     border-color: hsl(var(--cine-border));
   }
-  
+
   .cine-purple {
     background-color: hsl(var(--cine-purple));
   }
-  
+
   .cine-text {
     color: hsl(var(--cine-text));
   }
-  
+
   .cine-text-muted {
     color: hsl(var(--cine-text-muted));
   }
-  
+
   .cine-text-secondary {
     color: hsl(var(--cine-text-secondary));
   }
-  
+
   .cine-blue {
     background-color: hsl(var(--cine-blue));
   }
-  
+
   .cine-orange {
     background-color: hsl(var(--cine-orange));
   }
-  
+
   .cine-pink {
     background-color: hsl(var(--cine-pink));
   }

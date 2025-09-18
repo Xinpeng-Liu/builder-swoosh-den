@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 
 interface PlotPoint {
@@ -28,7 +28,11 @@ interface EditPlotPanelProps {
   onPlotPointUpdate: (plotPoint: PlotPoint) => void;
 }
 
-export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlotPanelProps) {
+export function EditPlotPanel({
+  plotPoint,
+  onClose,
+  onPlotPointUpdate,
+}: EditPlotPanelProps) {
   const [editedPlotPoint, setEditedPlotPoint] = useState<PlotPoint>(plotPoint);
 
   const handleInputChange = (field: keyof PlotPoint, value: string) => {
@@ -38,7 +42,13 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
   };
 
   const characters = [
-    "Maya", "Alex", "Dr. Chen", "Victor", "Cipher", "Nova", "Narrator"
+    "Maya",
+    "Alex",
+    "Dr. Chen",
+    "Victor",
+    "Cipher",
+    "Nova",
+    "Narrator",
   ];
 
   return (
@@ -61,13 +71,16 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
         <form className="space-y-6">
           {/* Title */}
           <div className="space-y-2">
-            <Label htmlFor="title" className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
+            <Label
+              htmlFor="title"
+              className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]"
+            >
               Title
             </Label>
             <Input
               id="title"
               value={editedPlotPoint.title}
-              onChange={(e) => handleInputChange('title', e.target.value)}
+              onChange={(e) => handleInputChange("title", e.target.value)}
               className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white"
               placeholder="Enter plot point title..."
             />
@@ -75,13 +88,16 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
 
           {/* Story Beat */}
           <div className="space-y-2">
-            <Label htmlFor="storyBeat" className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
+            <Label
+              htmlFor="storyBeat"
+              className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]"
+            >
               Story Beat
             </Label>
             <Textarea
               id="storyBeat"
               value={editedPlotPoint.storyBeat || ""}
-              onChange={(e) => handleInputChange('storyBeat', e.target.value)}
+              onChange={(e) => handleInputChange("storyBeat", e.target.value)}
               className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white min-h-[100px] resize-none"
               placeholder="Describe the story purpose and significance of this plot point..."
             />
@@ -89,13 +105,16 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
 
           {/* Dialogue */}
           <div className="space-y-2">
-            <Label htmlFor="dialogue" className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
+            <Label
+              htmlFor="dialogue"
+              className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]"
+            >
               Dialogue
             </Label>
             <Textarea
               id="dialogue"
               value={editedPlotPoint.dialogue || ""}
-              onChange={(e) => handleInputChange('dialogue', e.target.value)}
+              onChange={(e) => handleInputChange("dialogue", e.target.value)}
               className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white min-h-[120px] resize-none"
               placeholder="Enter character dialogue..."
             />
@@ -109,7 +128,7 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
               </Label>
               <Select
                 value={editedPlotPoint.character || ""}
-                onValueChange={(value) => handleInputChange('character', value)}
+                onValueChange={(value) => handleInputChange("character", value)}
               >
                 <SelectTrigger className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white">
                   <SelectValue placeholder="Select character..." />
@@ -132,7 +151,9 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
             </Label>
             <Select
               value={editedPlotPoint.type}
-              onValueChange={(value) => handleInputChange('type', value as "Dialogue" | "Action")}
+              onValueChange={(value) =>
+                handleInputChange("type", value as "Dialogue" | "Action")
+              }
             >
               <SelectTrigger className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white">
                 <SelectValue />
@@ -146,13 +167,16 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
 
           {/* Description */}
           <div className="space-y-2">
-            <Label htmlFor="description" className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
+            <Label
+              htmlFor="description"
+              className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]"
+            >
               Description
             </Label>
             <Textarea
               id="description"
               value={editedPlotPoint.description}
-              onChange={(e) => handleInputChange('description', e.target.value)}
+              onChange={(e) => handleInputChange("description", e.target.value)}
               className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white min-h-[100px] resize-none"
               placeholder="Describe what happens in this plot point..."
             />
@@ -169,9 +193,7 @@ export function EditPlotPanel({ plotPoint, onClose, onPlotPointUpdate }: EditPlo
         >
           Cancel
         </Button>
-        <Button
-          className="flex-1 bg-[hsl(var(--cine-purple))] hover:bg-[hsl(var(--cine-purple))]/90 text-white"
-        >
+        <Button className="flex-1 bg-[hsl(var(--cine-purple))] hover:bg-[hsl(var(--cine-purple))]/90 text-white">
           Save Changes
         </Button>
       </div>

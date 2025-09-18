@@ -51,22 +51,22 @@ export default function Clips() {
     <div className="h-screen bg-[hsl(var(--cine-bg))] text-[hsl(var(--cine-text))] overflow-hidden cine-dark">
       {/* Top Navigation */}
       <TopNav />
-      
+
       {/* Main Layout */}
       <div className="flex h-[calc(100vh-56px)]">
         {/* Sidebar */}
         <Sidebar activeItem="clips" />
-        
+
         {/* Main Content Area */}
         <div className="flex flex-1">
           {/* Clips View */}
           <div className="flex-1 border-r border-[hsl(var(--cine-border))] overflow-y-auto">
-            <ClipsView 
+            <ClipsView
               project={currentProject}
               onProjectUpdate={setCurrentProject}
             />
           </div>
-          
+
           {/* Clip Preview Panel */}
           <div className="w-96 bg-[hsl(var(--cine-sidebar))] overflow-y-auto">
             <ClipPreview project={currentProject} />

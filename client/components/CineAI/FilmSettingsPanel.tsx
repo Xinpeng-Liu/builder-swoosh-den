@@ -9,7 +9,10 @@ interface FilmSettingsPanelProps {
   onProjectUpdate: (project: TimelineProject) => void;
 }
 
-export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPanelProps) {
+export function FilmSettingsPanel({
+  project,
+  onProjectUpdate,
+}: FilmSettingsPanelProps) {
   const [settings, setSettings] = useState({
     format: "16:9 (Widescreen)",
     autoTransitions: true,
@@ -19,27 +22,27 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
     volume: 75,
     autoSubtitles: true,
     subtitleLanguage: "English",
-    exportQuality: "HD"
+    exportQuality: "HD",
   });
 
   const handleToggle = (setting: string) => {
-    setSettings(prev => ({
+    setSettings((prev) => ({
       ...prev,
-      [setting]: !prev[setting as keyof typeof prev]
+      [setting]: !prev[setting as keyof typeof prev],
     }));
   };
 
   const handleVolumeChange = (value: number) => {
-    setSettings(prev => ({
+    setSettings((prev) => ({
       ...prev,
-      volume: value
+      volume: value,
     }));
   };
 
   const handleExportQualityChange = (quality: string) => {
-    setSettings(prev => ({
+    setSettings((prev) => ({
       ...prev,
-      exportQuality: quality
+      exportQuality: quality,
     }));
   };
 
@@ -61,8 +64,8 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
       {/* Preview Section */}
       <div className="mb-6">
         <div className="relative w-full h-40 bg-[hsl(var(--cine-bg))] rounded-lg overflow-hidden mb-3">
-          <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/48a70a165cf8268a6397867268a107db31b76c72?width=510" 
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/48a70a165cf8268a6397867268a107db31b76c72?width=510"
             alt="Film preview"
             className="w-full h-full object-cover"
           />
@@ -80,9 +83,11 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
       <div className="mb-4">
         <h4 className="text-sm font-medium text-white mb-2">Format</h4>
         <div className="relative">
-          <select 
+          <select
             value={settings.format}
-            onChange={(e) => setSettings(prev => ({ ...prev, format: e.target.value }))}
+            onChange={(e) =>
+              setSettings((prev) => ({ ...prev, format: e.target.value }))
+            }
             className="w-full bg-[hsl(var(--cine-card))] text-gray-300 px-3 py-1.5 rounded-md border-0 text-sm appearance-none cursor-pointer"
           >
             <option value="16:9 (Widescreen)">16:9 (Widescreen)</option>
@@ -99,27 +104,38 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
         <div className="flex justify-between items-center mb-2">
           <h4 className="text-sm font-medium text-white">Auto Transitions</h4>
           <label className="relative inline-flex items-center cursor-pointer">
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={settings.autoTransitions}
               onChange={() => handleToggle("autoTransitions")}
               className="sr-only"
             />
-            <div className={cn(
-              "w-9 h-5 rounded-full transition-colors",
-              settings.autoTransitions ? "bg-purple-600" : "bg-gray-600"
-            )}>
-              <div className={cn(
-                "w-4 h-4 bg-white rounded-full transition-transform mt-0.5",
-                settings.autoTransitions ? "translate-x-4" : "translate-x-0.5"
-              )}></div>
+            <div
+              className={cn(
+                "w-9 h-5 rounded-full transition-colors",
+                settings.autoTransitions ? "bg-purple-600" : "bg-gray-600",
+              )}
+            >
+              <div
+                className={cn(
+                  "w-4 h-4 bg-white rounded-full transition-transform mt-0.5",
+                  settings.autoTransitions
+                    ? "translate-x-4"
+                    : "translate-x-0.5",
+                )}
+              ></div>
             </div>
           </label>
         </div>
         <div className="relative">
-          <select 
+          <select
             value={settings.transitionType}
-            onChange={(e) => setSettings(prev => ({ ...prev, transitionType: e.target.value }))}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                transitionType: e.target.value,
+              }))
+            }
             className="w-full bg-[hsl(var(--cine-card))] text-gray-300 px-3 py-1.5 rounded-md border-0 text-sm appearance-none cursor-pointer"
           >
             <option value="Fade">Fade</option>
@@ -136,27 +152,35 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
         <div className="flex justify-between items-center mb-2">
           <h4 className="text-sm font-medium text-white">Background Music</h4>
           <label className="relative inline-flex items-center cursor-pointer">
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={settings.backgroundMusic}
               onChange={() => handleToggle("backgroundMusic")}
               className="sr-only"
             />
-            <div className={cn(
-              "w-9 h-5 rounded-full transition-colors",
-              settings.backgroundMusic ? "bg-purple-600" : "bg-gray-600"
-            )}>
-              <div className={cn(
-                "w-4 h-4 bg-white rounded-full transition-transform mt-0.5",
-                settings.backgroundMusic ? "translate-x-4" : "translate-x-0.5"
-              )}></div>
+            <div
+              className={cn(
+                "w-9 h-5 rounded-full transition-colors",
+                settings.backgroundMusic ? "bg-purple-600" : "bg-gray-600",
+              )}
+            >
+              <div
+                className={cn(
+                  "w-4 h-4 bg-white rounded-full transition-transform mt-0.5",
+                  settings.backgroundMusic
+                    ? "translate-x-4"
+                    : "translate-x-0.5",
+                )}
+              ></div>
             </div>
           </label>
         </div>
         <div className="relative mb-3">
-          <select 
+          <select
             value={settings.musicType}
-            onChange={(e) => setSettings(prev => ({ ...prev, musicType: e.target.value }))}
+            onChange={(e) =>
+              setSettings((prev) => ({ ...prev, musicType: e.target.value }))
+            }
             className="w-full bg-[hsl(var(--cine-card))] text-gray-300 px-3 py-1.5 rounded-md border-0 text-sm appearance-none cursor-pointer"
           >
             <option value="Sci-Fi Ambience">Sci-Fi Ambience</option>
@@ -166,18 +190,20 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
           </select>
           <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400 pointer-events-none" />
         </div>
-        
+
         {/* Volume Slider */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-[hsl(var(--cine-text-muted))]">Volume</span>
+          <span className="text-xs text-[hsl(var(--cine-text-muted))]">
+            Volume
+          </span>
           <div className="flex-1 relative">
             <div className="h-1 bg-[hsl(var(--cine-border))] rounded-full">
-              <div 
+              <div
                 className="h-1 bg-purple-500 rounded-full transition-all"
                 style={{ width: `${settings.volume}%` }}
               ></div>
             </div>
-            <input 
+            <input
               type="range"
               min="0"
               max="100"
@@ -186,7 +212,9 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
               className="absolute inset-0 w-full h-1 opacity-0 cursor-pointer"
             />
           </div>
-          <span className="text-xs text-[hsl(var(--cine-text-muted))]">{settings.volume}%</span>
+          <span className="text-xs text-[hsl(var(--cine-text-muted))]">
+            {settings.volume}%
+          </span>
         </div>
       </div>
 
@@ -195,47 +223,70 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
         <div className="flex justify-between items-center mb-2">
           <h4 className="text-sm font-medium text-white">Auto Subtitles</h4>
           <label className="relative inline-flex items-center cursor-pointer">
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={settings.autoSubtitles}
               onChange={() => handleToggle("autoSubtitles")}
               className="sr-only"
             />
-            <div className={cn(
-              "w-9 h-5 rounded-full transition-colors",
-              settings.autoSubtitles ? "bg-purple-600" : "bg-gray-600"
-            )}>
-              <div className={cn(
-                "w-4 h-4 bg-white rounded-full transition-transform mt-0.5",
-                settings.autoSubtitles ? "translate-x-4" : "translate-x-0.5"
-              )}></div>
+            <div
+              className={cn(
+                "w-9 h-5 rounded-full transition-colors",
+                settings.autoSubtitles ? "bg-purple-600" : "bg-gray-600",
+              )}
+            >
+              <div
+                className={cn(
+                  "w-4 h-4 bg-white rounded-full transition-transform mt-0.5",
+                  settings.autoSubtitles ? "translate-x-4" : "translate-x-0.5",
+                )}
+              ></div>
             </div>
           </label>
         </div>
-        
+
         {/* Subtitle Controls */}
         <div className="flex gap-2 mb-3">
-          <Button variant="secondary" size="sm" className="flex-1 bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-muted))] border-0">
+          <Button
+            variant="secondary"
+            size="sm"
+            className="flex-1 bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-muted))] border-0"
+          >
             Font
           </Button>
-          <Button variant="secondary" size="sm" className="flex-1 bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-muted))] border-0">
+          <Button
+            variant="secondary"
+            size="sm"
+            className="flex-1 bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-muted))] border-0"
+          >
             Color
           </Button>
-          <Button variant="secondary" size="sm" className="flex-1 bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-muted))] border-0">
+          <Button
+            variant="secondary"
+            size="sm"
+            className="flex-1 bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-muted))] border-0"
+          >
             Position
           </Button>
         </div>
-        
+
         {/* Auto-translate */}
         <div className="bg-[hsl(var(--cine-card))] rounded-md p-2">
           <div className="flex items-center gap-2 mb-2">
             <Languages className="w-5 h-4 text-blue-500" />
-            <span className="text-xs font-medium text-gray-200">Auto-translate</span>
+            <span className="text-xs font-medium text-gray-200">
+              Auto-translate
+            </span>
           </div>
           <div className="relative">
-            <select 
+            <select
               value={settings.subtitleLanguage}
-              onChange={(e) => setSettings(prev => ({ ...prev, subtitleLanguage: e.target.value }))}
+              onChange={(e) =>
+                setSettings((prev) => ({
+                  ...prev,
+                  subtitleLanguage: e.target.value,
+                }))
+              }
               className="w-full bg-[hsl(var(--cine-border))] text-gray-300 px-3 py-1 rounded-md border-0 text-xs appearance-none cursor-pointer"
             >
               <option value="English">English</option>
@@ -253,9 +304,9 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
         <h4 className="text-sm font-medium text-white mb-3">Export Options</h4>
         <div className="space-y-2">
           <label className="flex items-center gap-2 cursor-pointer">
-            <input 
-              type="radio" 
-              name="quality" 
+            <input
+              type="radio"
+              name="quality"
               value="HD"
               checked={settings.exportQuality === "HD"}
               onChange={() => handleExportQualityChange("HD")}
@@ -264,9 +315,9 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
             <span className="text-sm text-gray-300">HD (1080p)</span>
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
-            <input 
-              type="radio" 
-              name="quality" 
+            <input
+              type="radio"
+              name="quality"
               value="4K"
               checked={settings.exportQuality === "4K"}
               onChange={() => handleExportQualityChange("4K")}
@@ -275,9 +326,9 @@ export function FilmSettingsPanel({ project, onProjectUpdate }: FilmSettingsPane
             <span className="text-sm text-gray-300">4K</span>
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
-            <input 
-              type="radio" 
-              name="quality" 
+            <input
+              type="radio"
+              name="quality"
               value="Web"
               checked={settings.exportQuality === "Web"}
               onChange={() => handleExportQualityChange("Web")}

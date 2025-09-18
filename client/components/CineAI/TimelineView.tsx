@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Plus, Search, ZoomIn, Scissors, Trash2, Copy, Layers, ChevronDown } from "lucide-react";
+import {
+  Plus,
+  Search,
+  ZoomIn,
+  Scissors,
+  Trash2,
+  Copy,
+  Layers,
+  ChevronDown,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { TimelineProject, TimelineClip } from "@/pages/Timeline";
 
@@ -11,7 +20,12 @@ interface TimelineViewProps {
   onClipSelect: (clip: TimelineClip | null) => void;
 }
 
-export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSelect }: TimelineViewProps) {
+export function TimelineView({
+  project,
+  selectedClip,
+  onProjectUpdate,
+  onClipSelect,
+}: TimelineViewProps) {
   const [playheadPosition, setPlayheadPosition] = useState(113); // Default position from design
   const [isDragging, setIsDragging] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -26,39 +40,58 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
       title: "Intro Scene",
       subtitle: "Scene 1",
       duration: "0:12",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/59f920e0aee4f7ce86a3073f0e6740fda36185a0?width=272"
+      imageUrl:
+        "https://api.builder.io/api/v1/image/assets/TEMP/59f920e0aee4f7ce86a3073f0e6740fda36185a0?width=272",
     },
     {
-      id: "lib2", 
+      id: "lib2",
       title: "Character Reveal",
       subtitle: "Scene 1",
       duration: "0:18",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/73fc9d3fdbb5da1f24fa2fcdb3320353c96b6a92?width=272"
+      imageUrl:
+        "https://api.builder.io/api/v1/image/assets/TEMP/73fc9d3fdbb5da1f24fa2fcdb3320353c96b6a92?width=272",
     },
     {
       id: "lib3",
       title: "Conflict",
-      subtitle: "Scene 2", 
+      subtitle: "Scene 2",
       duration: "0:15",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/3e1ec6bcb35cdd2d55f17a21fda92affdfa15a7c?width=272"
+      imageUrl:
+        "https://api.builder.io/api/v1/image/assets/TEMP/3e1ec6bcb35cdd2d55f17a21fda92affdfa15a7c?width=272",
     },
     {
       id: "lib4",
       title: "Resolution",
       subtitle: "Scene 3",
-      duration: "0:20", 
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/59f920e0aee4f7ce86a3073f0e6740fda36185a0?width=272"
+      duration: "0:20",
+      imageUrl:
+        "https://api.builder.io/api/v1/image/assets/TEMP/59f920e0aee4f7ce86a3073f0e6740fda36185a0?width=272",
     },
     {
       id: "lib5",
       title: "Epilogue",
       subtitle: "Scene 3",
       duration: "0:10",
-      imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/73fc9d3fdbb5da1f24fa2fcdb3320353c96b6a92?width=272"
-    }
+      imageUrl:
+        "https://api.builder.io/api/v1/image/assets/TEMP/73fc9d3fdbb5da1f24fa2fcdb3320353c96b6a92?width=272",
+    },
   ];
 
-  const timeMarkers = ["0:00", "0:10", "0:20", "0:30", "0:40", "0:50", "1:00", "1:10", "1:20", "1:30", "1:40", "1:50", "2:00"];
+  const timeMarkers = [
+    "0:00",
+    "0:10",
+    "0:20",
+    "0:30",
+    "0:40",
+    "0:50",
+    "1:00",
+    "1:10",
+    "1:20",
+    "1:30",
+    "1:40",
+    "1:50",
+    "2:00",
+  ];
 
   const handleAddTrack = () => {
     console.log("Add track clicked");
@@ -77,12 +110,16 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
 
   const handlePlayheadDrag = (e: React.MouseEvent) => {
     setIsDragging(true);
-    const container = (e.currentTarget as HTMLDivElement).parentElement as HTMLElement | null;
+    const container = (e.currentTarget as HTMLDivElement)
+      .parentElement as HTMLElement | null;
     const rect = container?.getBoundingClientRect();
     if (!rect) return;
 
     const updateFromClientX = (clientX: number) => {
-      const newPosition = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      const newPosition = Math.max(
+        0,
+        Math.min(clientX - rect.left, rect.width),
+      );
       setPlayheadPosition(newPosition);
       const timePercentage = newPosition / rect.width;
       const newTime = timePercentage * project.duration;
@@ -126,17 +163,19 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
     switch (action) {
       case "cut":
         // Split clip at current playhead position
-        console.log(`Cutting clip ${selectedClip.title} at ${project.currentTime}s`);
+        console.log(
+          `Cutting clip ${selectedClip.title} at ${project.currentTime}s`,
+        );
         break;
       case "delete":
         // Remove selected clip from timeline
         const updatedTracks = { ...project.tracks };
-        updatedTracks[selectedClip.type] = updatedTracks[selectedClip.type].filter(
-          clip => clip.id !== selectedClip.id
-        );
+        updatedTracks[selectedClip.type] = updatedTracks[
+          selectedClip.type
+        ].filter((clip) => clip.id !== selectedClip.id);
         onProjectUpdate({
           ...project,
-          tracks: updatedTracks
+          tracks: updatedTracks,
         });
         onClipSelect(null);
         break;
@@ -199,13 +238,16 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
         {/* Video Track */}
         <div className="flex border-b border-[hsl(var(--cine-border))] h-24">
           <div className="w-20 bg-[hsl(var(--cine-card))] border-r border-[hsl(var(--cine-border))] flex items-center justify-center">
-            <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">Video</span>
+            <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">
+              Video
+            </span>
           </div>
           <div
             ref={trackRef}
             className={cn(
               "flex-1 relative p-2 transition-colors overflow-hidden",
-              isDragOver && "bg-purple-500/10 border-2 border-dashed border-purple-500"
+              isDragOver &&
+                "bg-purple-500/10 border-2 border-dashed border-purple-500",
             )}
             onDragOver={(e) => {
               e.preventDefault();
@@ -216,7 +258,9 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
               setIsDragOver(false);
               e.preventDefault();
               try {
-                const json = e.dataTransfer.getData("application/json") || e.dataTransfer.getData("text/plain");
+                const json =
+                  e.dataTransfer.getData("application/json") ||
+                  e.dataTransfer.getData("text/plain");
                 if (!json) return; // Nothing to drop
                 const clipData = JSON.parse(json);
                 if (!clipData || !clipData.id) return;
@@ -232,12 +276,12 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                   type: "video",
                   imageUrl: clipData.imageUrl,
                   content: clipData.content,
-                  track: 0
+                  track: 0,
                 };
 
                 const updatedTracks = {
                   ...project.tracks,
-                  video: [...project.tracks.video, newClip]
+                  video: [...project.tracks.video, newClip],
                 };
 
                 onProjectUpdate({ ...project, tracks: updatedTracks });
@@ -252,32 +296,38 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 key={clip.id}
                 className={cn(
                   "absolute top-2 h-20 bg-[hsl(var(--cine-border))] border border-[hsl(var(--cine-card))] rounded-md overflow-hidden cursor-move select-none",
-                  selectedClip?.id === clip.id && "ring-2 ring-purple-500"
+                  selectedClip?.id === clip.id && "ring-2 ring-purple-500",
                 )}
                 style={{
                   left: `${getClipPosition(clip.startTime)}px`,
-                  width: `${getClipWidth(clip.duration)}px`
+                  width: `${getClipWidth(clip.duration)}px`,
                 }}
                 onMouseDown={(e) => {
                   const rect = trackRef.current?.getBoundingClientRect();
                   const clipLeftPx = getClipPosition(clip.startTime);
                   setDraggingClipId(clip.id);
-                  setDragOffsetPx(e.clientX - (rect ? rect.left : 0) - clipLeftPx);
+                  setDragOffsetPx(
+                    e.clientX - (rect ? rect.left : 0) - clipLeftPx,
+                  );
                   onClipSelect(clip);
                 }}
               >
                 <div className="relative h-14 bg-[hsl(var(--cine-card))]">
                   {clip.imageUrl && (
-                    <img 
-                      src={clip.imageUrl} 
+                    <img
+                      src={clip.imageUrl}
                       alt={clip.title}
                       className="w-full h-full object-cover opacity-70"
                     />
                   )}
                 </div>
                 <div className="px-1 py-1 flex justify-between items-center text-xs">
-                  <span className="text-[hsl(var(--cine-text-muted))] truncate">{clip.title}</span>
-                  <span className="text-[hsl(var(--cine-text-muted))]">{clip.duration}</span>
+                  <span className="text-[hsl(var(--cine-text-muted))] truncate">
+                    {clip.title}
+                  </span>
+                  <span className="text-[hsl(var(--cine-text-muted))]">
+                    {clip.duration}
+                  </span>
                 </div>
               </div>
             ))}
@@ -287,7 +337,9 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
         {/* Audio Track */}
         <div className="flex border-b border-[hsl(var(--cine-border))] h-20">
           <div className="w-20 bg-[hsl(var(--cine-card))] border-r border-[hsl(var(--cine-border))] flex items-center justify-center">
-            <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">Audio</span>
+            <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">
+              Audio
+            </span>
           </div>
           <div className="flex-1 relative p-2 overflow-hidden">
             {project.tracks.audio.map((clip) => (
@@ -296,25 +348,34 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 className="absolute top-2 h-16 bg-[hsl(var(--cine-border))] border border-[hsl(var(--cine-card))] rounded-md overflow-hidden"
                 style={{
                   left: `${getClipPosition(clip.startTime)}px`,
-                  width: `${getClipWidth(clip.duration)}px`
+                  width: `${getClipWidth(clip.duration)}px`,
                 }}
               >
                 <div className="h-10 bg-[hsl(var(--cine-card))] flex items-center justify-center">
                   <div className="flex items-center justify-center">
                     {/* Audio waveform visualization */}
-                    <svg width="80" height="16" viewBox="0 0 81 16" className="text-[hsl(var(--cine-border))] opacity-50">
-                      <path 
-                        d="M0.25 8C2.91667 5.33333 5.58333 5.33333 8.25 8C10.9167 10.6667 13.5833 10.6667 16.25 8C18.9167 5.33333 21.5833 5.33333 24.25 8C26.9167 10.6667 29.5833 10.6667 32.25 8C34.9167 5.33333 37.5833 5.33333 40.25 8C42.9167 10.6667 45.5833 10.6667 48.25 8C50.9167 5.33333 53.5833 5.33333 56.25 8C58.9167 10.6667 61.5833 10.6667 64.25 8C66.9167 5.33333 69.5833 5.33333 72.25 8C74.9167 10.6667 77.5833 10.6667 80.25 8" 
-                        stroke="currentColor" 
-                        strokeWidth="0.8" 
+                    <svg
+                      width="80"
+                      height="16"
+                      viewBox="0 0 81 16"
+                      className="text-[hsl(var(--cine-border))] opacity-50"
+                    >
+                      <path
+                        d="M0.25 8C2.91667 5.33333 5.58333 5.33333 8.25 8C10.9167 10.6667 13.5833 10.6667 16.25 8C18.9167 5.33333 21.5833 5.33333 24.25 8C26.9167 10.6667 29.5833 10.6667 32.25 8C34.9167 5.33333 37.5833 5.33333 40.25 8C42.9167 10.6667 45.5833 10.6667 48.25 8C50.9167 5.33333 53.5833 5.33333 56.25 8C58.9167 10.6667 61.5833 10.6667 64.25 8C66.9167 5.33333 69.5833 5.33333 72.25 8C74.9167 10.6667 77.5833 10.6667 80.25 8"
+                        stroke="currentColor"
+                        strokeWidth="0.8"
                         fill="none"
                       />
                     </svg>
                   </div>
                 </div>
                 <div className="px-1 py-1 flex justify-between items-center text-xs">
-                  <span className="text-[hsl(var(--cine-text-muted))] truncate">{clip.title}</span>
-                  <span className="text-[hsl(var(--cine-text-muted))]">{clip.duration}</span>
+                  <span className="text-[hsl(var(--cine-text-muted))] truncate">
+                    {clip.title}
+                  </span>
+                  <span className="text-[hsl(var(--cine-text-muted))]">
+                    {clip.duration}
+                  </span>
                 </div>
               </div>
             ))}
@@ -324,7 +385,9 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
         {/* Text Track */}
         <div className="flex border-b border-[hsl(var(--cine-border))] h-20">
           <div className="w-20 bg-[hsl(var(--cine-card))] border-r border-[hsl(var(--cine-border))] flex items-center justify-center">
-            <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">Text</span>
+            <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">
+              Text
+            </span>
           </div>
           <div className="flex-1 relative p-2 overflow-hidden">
             {project.tracks.text.map((clip) => (
@@ -333,15 +396,21 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 className="absolute top-2 h-16 bg-[hsl(var(--cine-border))] border border-[hsl(var(--cine-card))] rounded-md overflow-hidden"
                 style={{
                   left: `${getClipPosition(clip.startTime) + 25}px`,
-                  width: `${getClipWidth(clip.duration)}px`
+                  width: `${getClipWidth(clip.duration)}px`,
                 }}
               >
                 <div className="h-10 bg-blue-500/20 flex items-center justify-center px-2">
-                  <span className="text-xs text-blue-100 truncate">{clip.content}</span>
+                  <span className="text-xs text-blue-100 truncate">
+                    {clip.content}
+                  </span>
                 </div>
                 <div className="px-1 py-1 flex justify-between items-center text-xs">
-                  <span className="text-[hsl(var(--cine-text-muted))] truncate">{clip.title}</span>
-                  <span className="text-[hsl(var(--cine-text-muted))]">{clip.duration}</span>
+                  <span className="text-[hsl(var(--cine-text-muted))] truncate">
+                    {clip.title}
+                  </span>
+                  <span className="text-[hsl(var(--cine-text-muted))]">
+                    {clip.duration}
+                  </span>
                 </div>
               </div>
             ))}
@@ -356,16 +425,26 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
               const rect = trackRef.current?.getBoundingClientRect();
               if (!rect) return;
               const px = e.clientX - rect.left - dragOffsetPx;
-              const newStart = Math.max(0, Math.min(pxToSeconds(px), project.duration));
-              const idx = project.tracks.video.findIndex((c) => c.id === draggingClipId);
+              const newStart = Math.max(
+                0,
+                Math.min(pxToSeconds(px), project.duration),
+              );
+              const idx = project.tracks.video.findIndex(
+                (c) => c.id === draggingClipId,
+              );
               if (idx >= 0) {
                 const clip = project.tracks.video[idx];
                 const clipLen = parseDurationToSeconds(clip.duration);
-                const clamped = Math.max(0, Math.min(newStart, project.duration - clipLen));
+                const clamped = Math.max(
+                  0,
+                  Math.min(newStart, project.duration - clipLen),
+                );
                 const updated = { ...project };
                 updated.tracks = {
                   ...updated.tracks,
-                  video: updated.tracks.video.map((c) => (c.id === draggingClipId ? { ...c, startTime: clamped } : c)),
+                  video: updated.tracks.video.map((c) =>
+                    c.id === draggingClipId ? { ...c, startTime: clamped } : c,
+                  ),
                 } as any;
                 onProjectUpdate(updated);
               }
@@ -387,34 +466,34 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
       {/* Timeline Controls */}
       <div className="mx-4 px-4 py-2 bg-[hsl(var(--cine-sidebar))] border-l border-r border-b border-[hsl(var(--cine-border))] rounded-b-md">
         <div className="flex items-center gap-3">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => handleTimelineAction("cut")}
             className="p-2 text-[hsl(var(--cine-text-muted))] hover:text-white"
           >
             <Scissors className="w-4 h-4" />
           </Button>
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => handleTimelineAction("delete")}
             className="p-2 text-[hsl(var(--cine-text-muted))] hover:text-white"
           >
             <Trash2 className="w-3.5 h-4" />
           </Button>
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => handleTimelineAction("copy")}
             className="p-2 text-[hsl(var(--cine-text-muted))] hover:text-white"
           >
             <Copy className="w-4 h-4" />
           </Button>
           <div className="flex-1"></div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => handleTimelineAction("layers")}
             className="p-2 text-[hsl(var(--cine-text-muted))] hover:text-white"
           >
@@ -428,13 +507,15 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-white font-medium">Clip Library</h3>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-[hsl(var(--cine-text-muted))]">Drag clips to timeline</span>
+            <span className="text-sm text-[hsl(var(--cine-text-muted))]">
+              Drag clips to timeline
+            </span>
             <Button variant="ghost" size="sm" className="p-2">
               <ChevronDown className="w-4 h-4 text-[hsl(var(--cine-text-muted))]" />
             </Button>
           </div>
         </div>
-        
+
         <div className="flex gap-4 overflow-x-auto">
           {clipLibrary.map((clip) => (
             <div
@@ -447,11 +528,15 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 e.dataTransfer.setData("text/plain", payload);
               }}
             >
-              <div className="relative h-20" draggable onDragStart={(e) => {
-                const payload = JSON.stringify({ ...clip, type: "video" });
-                e.dataTransfer.setData("application/json", payload);
-                e.dataTransfer.setData("text/plain", payload);
-              }}>
+              <div
+                className="relative h-20"
+                draggable
+                onDragStart={(e) => {
+                  const payload = JSON.stringify({ ...clip, type: "video" });
+                  e.dataTransfer.setData("application/json", payload);
+                  e.dataTransfer.setData("text/plain", payload);
+                }}
+              >
                 <img
                   src={clip.imageUrl}
                   alt={clip.title}
@@ -468,22 +553,29 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                     onClick={() => console.log(`Play clip: ${clip.title}`)}
                   >
                     <svg width="14" height="16" viewBox="0 0 12 16" fill="none">
-                      <path d="M2.28125 1.21872C1.81875 0.934346 1.2375 0.924971 0.765625 1.1906C0.29375 1.45622 0 1.95622 0 2.49997V13.5C0 14.0437 0.29375 14.5437 0.765625 14.8093C1.2375 15.075 1.81875 15.0625 2.28125 14.7812L11.2812 9.28122C11.7281 9.00935 12 8.52497 12 7.99997C12 7.47497 11.7281 6.99372 11.2812 6.71872L2.28125 1.21872Z" fill="white"/>
+                      <path
+                        d="M2.28125 1.21872C1.81875 0.934346 1.2375 0.924971 0.765625 1.1906C0.29375 1.45622 0 1.95622 0 2.49997V13.5C0 14.0437 0.29375 14.5437 0.765625 14.8093C1.2375 15.075 1.81875 15.0625 2.28125 14.7812L11.2812 9.28122C11.7281 9.00935 12 8.52497 12 7.99997C12 7.47497 11.7281 6.99372 11.2812 6.71872L2.28125 1.21872Z"
+                        fill="white"
+                      />
                     </svg>
                   </Button>
                 </div>
               </div>
               <div className="p-2">
-                <h4 className="text-xs font-medium text-white truncate">{clip.title}</h4>
-                <p className="text-xs text-[hsl(var(--cine-text-muted))]">{clip.subtitle}</p>
+                <h4 className="text-xs font-medium text-white truncate">
+                  {clip.title}
+                </h4>
+                <p className="text-xs text-[hsl(var(--cine-text-muted))]">
+                  {clip.subtitle}
+                </p>
               </div>
             </div>
           ))}
-          
+
           {/* Add New Clip Button */}
           <div className="min-w-34 bg-[hsl(var(--cine-card))] rounded-md border-2 border-dashed border-[hsl(var(--cine-card))] flex flex-col items-center justify-center h-44">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               onClick={() => handleClipLibraryAction("generate")}
               className="flex flex-col items-center gap-2 h-full text-[hsl(var(--cine-text-muted))] hover:text-white"
             >

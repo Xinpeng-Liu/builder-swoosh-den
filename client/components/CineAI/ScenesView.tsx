@@ -22,21 +22,25 @@ interface ScenesViewProps {
 }
 
 const atmosphereColors: Record<string, string> = {
-  "Mysterious": "bg-purple-500",
-  "Cheerful": "bg-pink-500",
-  "Eerie": "bg-purple-500",
-  "Romantic": "bg-pink-500",
-  "Tense": "bg-orange-500",
+  Mysterious: "bg-purple-500",
+  Cheerful: "bg-pink-500",
+  Eerie: "bg-purple-500",
+  Romantic: "bg-pink-500",
+  Tense: "bg-orange-500",
 };
 
 const timeColors: Record<string, string> = {
-  "Night": "bg-blue-500",
-  "Morning": "bg-orange-500",
-  "Evening": "bg-blue-500",
-  "Day": "bg-blue-500",
+  Night: "bg-blue-500",
+  Morning: "bg-orange-500",
+  Evening: "bg-blue-500",
+  Day: "bg-blue-500",
 };
 
-export function ScenesView({ scenes, onSceneSelect, selectedSceneId }: ScenesViewProps) {
+export function ScenesView({
+  scenes,
+  onSceneSelect,
+  selectedSceneId,
+}: ScenesViewProps) {
   return (
     <div className="h-full bg-[hsl(var(--cine-bg))] p-6">
       {/* Header */}
@@ -44,7 +48,7 @@ export function ScenesView({ scenes, onSceneSelect, selectedSceneId }: ScenesVie
         <h2 className="text-xl font-normal text-white font-['Lexend']">
           Scenes
         </h2>
-        <Button 
+        <Button
           className="bg-[hsl(var(--cine-purple))] hover:bg-[hsl(var(--cine-purple))]/90 text-white h-8 px-4 gap-2"
           size="sm"
         >
@@ -85,17 +89,22 @@ function SceneCard({ scene, isSelected, onClick }: SceneCardProps) {
         "bg-[hsl(var(--cine-sidebar))]",
         isSelected
           ? "border-[hsl(var(--cine-blue))]"
-          : "border-[hsl(var(--cine-border))]"
+          : "border-[hsl(var(--cine-border))]",
       )}
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       onClick={onClick}
     >
       <div className="flex gap-4">
         {/* Scene Image */}
         <div className="w-24 h-24 rounded bg-[hsl(var(--cine-card))] overflow-hidden flex-shrink-0">
-          <img 
-            src={scene.imageUrl} 
+          <img
+            src={scene.imageUrl}
             alt={scene.title}
             className="w-full h-full object-cover"
           />
@@ -104,9 +113,7 @@ function SceneCard({ scene, isSelected, onClick }: SceneCardProps) {
         {/* Scene Info */}
         <div className="flex-1 min-w-0">
           {/* Title */}
-          <h3 className="text-white font-medium mb-1">
-            {scene.title}
-          </h3>
+          <h3 className="text-white font-medium mb-1">{scene.title}</h3>
 
           {/* Location */}
           <div className="flex items-center gap-1 mb-3 text-[hsl(var(--cine-text-muted))]">
@@ -116,19 +123,25 @@ function SceneCard({ scene, isSelected, onClick }: SceneCardProps) {
 
           {/* Tags */}
           <div className="flex items-center gap-2 mb-3">
-            <span className={cn(
-              "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs",
-              "bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-secondary))]"
-            )}>
+            <span
+              className={cn(
+                "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs",
+                "bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-secondary))]",
+              )}
+            >
               <Clock className="w-3 h-3" />
               <div className={cn("w-1.5 h-1.5 rounded-full", timeColor)} />
               {scene.timeOfDay}
             </span>
-            <span className={cn(
-              "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs",
-              "bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-secondary))]"
-            )}>
-              <div className={cn("w-1.5 h-1.5 rounded-full", atmosphereColor)} />
+            <span
+              className={cn(
+                "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs",
+                "bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-secondary))]",
+              )}
+            >
+              <div
+                className={cn("w-1.5 h-1.5 rounded-full", atmosphereColor)}
+              />
               {scene.atmosphere}
             </span>
           </div>

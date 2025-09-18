@@ -3,12 +3,12 @@ import { X, Upload, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 
 interface Scene {
@@ -40,10 +40,13 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
   };
 
   const handleAddKeyword = () => {
-    if (newKeyword.trim() && !editedScene.keywords.includes(newKeyword.trim())) {
+    if (
+      newKeyword.trim() &&
+      !editedScene.keywords.includes(newKeyword.trim())
+    ) {
       const updated = {
         ...editedScene,
-        keywords: [...editedScene.keywords, newKeyword.trim()]
+        keywords: [...editedScene.keywords, newKeyword.trim()],
       };
       setEditedScene(updated);
       onSceneUpdate(updated);
@@ -54,14 +57,14 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
   const handleRemoveKeyword = (keyword: string) => {
     const updated = {
       ...editedScene,
-      keywords: editedScene.keywords.filter(k => k !== keyword)
+      keywords: editedScene.keywords.filter((k) => k !== keyword),
     };
     setEditedScene(updated);
     onSceneUpdate(updated);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleAddKeyword();
     }
   };
@@ -80,26 +83,32 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
         <form className="space-y-6">
           {/* Title */}
           <div className="space-y-1">
-            <Label htmlFor="title" className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
+            <Label
+              htmlFor="title"
+              className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]"
+            >
               Title
             </Label>
             <Input
               id="title"
               value={editedScene.title}
-              onChange={(e) => handleInputChange('title', e.target.value)}
+              onChange={(e) => handleInputChange("title", e.target.value)}
               className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white h-10.5"
             />
           </div>
 
           {/* Location */}
           <div className="space-y-1">
-            <Label htmlFor="location" className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
+            <Label
+              htmlFor="location"
+              className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]"
+            >
               Location
             </Label>
             <Input
               id="location"
               value={editedScene.location}
-              onChange={(e) => handleInputChange('location', e.target.value)}
+              onChange={(e) => handleInputChange("location", e.target.value)}
               className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white h-10.5"
             />
           </div>
@@ -111,7 +120,7 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
             </Label>
             <Select
               value={editedScene.timeOfDay}
-              onValueChange={(value) => handleInputChange('timeOfDay', value)}
+              onValueChange={(value) => handleInputChange("timeOfDay", value)}
             >
               <SelectTrigger className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white h-10.5">
                 <SelectValue />
@@ -132,7 +141,7 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
             </Label>
             <Select
               value={editedScene.atmosphere}
-              onValueChange={(value) => handleInputChange('atmosphere', value)}
+              onValueChange={(value) => handleInputChange("atmosphere", value)}
             >
               <SelectTrigger className="bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-white h-10.5">
                 <SelectValue />
@@ -153,7 +162,7 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
             <Label className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
               Keywords
             </Label>
-            
+
             {/* Current Keywords */}
             <div className="flex flex-wrap gap-2">
               {editedScene.keywords.map((keyword) => (
@@ -172,7 +181,7 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
                 </span>
               ))}
             </div>
-            
+
             {/* Add Keyword */}
             <div className="flex gap-0">
               <Input
@@ -198,18 +207,18 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
             <Label className="text-sm font-medium text-[hsl(var(--cine-text-secondary))]">
               Scene Image
             </Label>
-            
+
             {/* Image Preview */}
             <div className="p-2 bg-[hsl(var(--cine-card))] border border-[hsl(var(--cine-border))] rounded-md">
               <div className="w-full h-44 bg-[hsl(var(--cine-sidebar))] rounded overflow-hidden">
-                <img 
-                  src={editedScene.imageUrl} 
+                <img
+                  src={editedScene.imageUrl}
                   alt={editedScene.title}
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
-            
+
             {/* Action Buttons */}
             <div className="flex gap-2">
               <Button
@@ -242,9 +251,7 @@ export function EditPanel({ scene, onClose, onSceneUpdate }: EditPanelProps) {
         >
           Cancel
         </Button>
-        <Button
-          className="flex-1 bg-[hsl(var(--cine-purple))] hover:bg-[hsl(var(--cine-purple))]/90 text-white"
-        >
+        <Button className="flex-1 bg-[hsl(var(--cine-purple))] hover:bg-[hsl(var(--cine-purple))]/90 text-white">
           Save Scene
         </Button>
       </div>

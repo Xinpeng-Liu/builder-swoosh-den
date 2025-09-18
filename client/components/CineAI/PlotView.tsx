@@ -20,26 +20,40 @@ interface PlotViewProps {
 }
 
 const typeColors: Record<string, string> = {
-  "Dialogue": "bg-blue-500",
-  "Action": "bg-orange-500",
+  Dialogue: "bg-blue-500",
+  Action: "bg-orange-500",
 };
 
-export function PlotView({ plotPoints, onPlotPointSelect, selectedPlotPointId }: PlotViewProps) {
+export function PlotView({
+  plotPoints,
+  onPlotPointSelect,
+  selectedPlotPointId,
+}: PlotViewProps) {
   return (
     <div className="h-full bg-[hsl(var(--cine-bg))] flex flex-col">
       {/* Header */}
       <div className="p-4 border-b border-[hsl(var(--cine-border))] flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="text-[hsl(var(--cine-text-muted))] hover:text-white p-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-[hsl(var(--cine-text-muted))] hover:text-white p-2"
+          >
             <Download className="w-4 h-4" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-[hsl(var(--cine-text-muted))] hover:text-white p-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-[hsl(var(--cine-text-muted))] hover:text-white p-2"
+          >
             <Eye className="w-4 h-4" />
           </Button>
         </div>
-        
+
         <div className="flex items-center gap-2">
-          <span className="text-sm text-[hsl(var(--cine-text-muted))]">Sort:</span>
+          <span className="text-sm text-[hsl(var(--cine-text-muted))]">
+            Sort:
+          </span>
           <select className="bg-[hsl(var(--cine-card))] border border-[hsl(var(--cine-border))] text-white text-sm rounded-md px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-purple))]">
             <option>Manual</option>
             <option>Chronological</option>
@@ -89,7 +103,12 @@ interface PlotPointCardProps {
   onClick: () => void;
 }
 
-function PlotPointCard({ plotPoint, index, isSelected, onClick }: PlotPointCardProps) {
+function PlotPointCard({
+  plotPoint,
+  index,
+  isSelected,
+  onClick,
+}: PlotPointCardProps) {
   const typeColor = typeColors[plotPoint.type] || "bg-gray-500";
 
   return (
@@ -99,10 +118,15 @@ function PlotPointCard({ plotPoint, index, isSelected, onClick }: PlotPointCardP
         "bg-[hsl(var(--cine-sidebar))]",
         isSelected
           ? "border-[hsl(var(--cine-blue))]"
-          : "border-[hsl(var(--cine-border))]"
+          : "border-[hsl(var(--cine-border))]",
       )}
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       onClick={onClick}
     >
       <div className="flex items-start justify-between mb-2">
@@ -110,9 +134,7 @@ function PlotPointCard({ plotPoint, index, isSelected, onClick }: PlotPointCardP
           <span className="w-6 h-6 rounded-full bg-[hsl(var(--cine-card))] flex items-center justify-center text-xs text-[hsl(var(--cine-text-secondary))]">
             {index}
           </span>
-          <h3 className="text-white font-medium text-sm">
-            {plotPoint.title}
-          </h3>
+          <h3 className="text-white font-medium text-sm">{plotPoint.title}</h3>
         </div>
         <button className="p-1 rounded hover:bg-[hsl(var(--cine-card))] transition-colors">
           <MoreHorizontal className="w-3 h-3 text-[hsl(var(--cine-text-muted))]" />
@@ -126,13 +148,15 @@ function PlotPointCard({ plotPoint, index, isSelected, onClick }: PlotPointCardP
 
       {/* Type Tag */}
       <div className="flex items-center justify-between">
-        <span className={cn(
-          "inline-block px-2 py-1 rounded text-xs text-white",
-          typeColor
-        )}>
+        <span
+          className={cn(
+            "inline-block px-2 py-1 rounded text-xs text-white",
+            typeColor,
+          )}
+        >
           {plotPoint.type}
         </span>
-        
+
         {plotPoint.character && (
           <span className="text-xs text-[hsl(var(--cine-text-muted))]">
             {plotPoint.character}

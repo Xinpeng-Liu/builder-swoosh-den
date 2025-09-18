@@ -33,7 +33,7 @@ export function ClipPreview({ project }: ClipPreviewProps) {
       description: "Rendering 1080p MP4 with Cyberpunk + Steadicam shots…",
       length: "0:18",
       resolution: "1920×1080",
-      size: "—"
+      size: "—",
     },
     {
       id: "gh_008",
@@ -43,7 +43,7 @@ export function ClipPreview({ project }: ClipPreviewProps) {
       description: "Wide → Tracking → Close Up. Looks sharp with HDR enabled.",
       length: "0:22",
       resolution: "1920×1080",
-      size: "28 MB"
+      size: "28 MB",
     },
     {
       id: "gh_007",
@@ -53,7 +53,7 @@ export function ClipPreview({ project }: ClipPreviewProps) {
       description: "Low-angle + High contrast noir. Approved for timeline.",
       length: "0:15",
       resolution: "1920×1080",
-      size: "19 MB"
+      size: "19 MB",
     },
     {
       id: "gh_006",
@@ -63,7 +63,7 @@ export function ClipPreview({ project }: ClipPreviewProps) {
       description: "Aerial shot failed checksum. Retrying suggested.",
       length: "0:08",
       resolution: "3840×2160",
-      size: "—"
+      size: "—",
     },
     {
       id: "gh_005",
@@ -73,15 +73,15 @@ export function ClipPreview({ project }: ClipPreviewProps) {
       description: "Macro board detail + rack focus. Graded teal/orange.",
       length: "0:12",
       resolution: "1920×1080",
-      size: "14 MB"
-    }
+      size: "14 MB",
+    },
   ];
 
   const generationStats: GenerationStat[] = [
     { label: "Total Clips", value: 5 },
     { label: "Successful", value: 3 },
     { label: "Failed", value: 1 },
-    { label: "Processing", value: 1 }
+    { label: "Processing", value: 1 },
   ];
 
   const getStatusIcon = (status: string) => {
@@ -117,11 +117,11 @@ export function ClipPreview({ project }: ClipPreviewProps) {
         <h3 className="text-sm font-medium text-[hsl(var(--cine-text-muted))] mb-4">
           Generation History
         </h3>
-        
+
         <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-0 top-0 bottom-0 w-px bg-[hsl(var(--cine-border))] ml-1.5" />
-          
+
           <div className="space-y-4">
             {generationHistory.map((item, index) => (
               <div key={item.id} className="relative pl-8">
@@ -129,17 +129,26 @@ export function ClipPreview({ project }: ClipPreviewProps) {
                 <div className="absolute left-0 top-1.5">
                   {getStatusIcon(item.status)}
                 </div>
-                
+
                 {/* Content */}
                 <div className="space-y-2">
                   <span className="text-xs text-[hsl(var(--cine-text-muted))]">
                     {item.timestamp}
                   </span>
-                  
+
                   <div className="p-3 bg-[hsl(var(--cine-card))] rounded-md space-y-1">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm text-white font-medium truncate pr-2">{item.title}</h4>
-                      <span className={cn("text-xs capitalize", getStatusColor(item.status))}>{item.status}</span>
+                      <h4 className="text-sm text-white font-medium truncate pr-2">
+                        {item.title}
+                      </h4>
+                      <span
+                        className={cn(
+                          "text-xs capitalize",
+                          getStatusColor(item.status),
+                        )}
+                      >
+                        {item.status}
+                      </span>
                     </div>
                     <p className="text-xs text-[hsl(var(--cine-text-muted))] leading-4">
                       {item.description}
@@ -171,7 +180,9 @@ export function ClipPreview({ project }: ClipPreviewProps) {
 
       {/* Generation Stats */}
       <div className="mb-8">
-        <h4 className="text-sm font-medium text-white mb-3">Generation Stats</h4>
+        <h4 className="text-sm font-medium text-white mb-3">
+          Generation Stats
+        </h4>
         <div className="space-y-2">
           {generationStats.map((stat, index) => (
             <div key={index} className="flex justify-between items-center">
@@ -189,16 +200,18 @@ export function ClipPreview({ project }: ClipPreviewProps) {
       {/* Generation Settings */}
       <div className="space-y-3">
         <h4 className="text-sm font-medium text-white">Generation Settings</h4>
-        
+
         {/* Quality Slider */}
         <div className="space-y-1">
           <div className="flex justify-between items-center">
-            <span className="text-xs text-[hsl(var(--cine-text-muted))]">Quality</span>
+            <span className="text-xs text-[hsl(var(--cine-text-muted))]">
+              Quality
+            </span>
             <span className="text-xs text-purple-500">High</span>
           </div>
           <div className="w-full h-1.5 bg-[hsl(var(--cine-border))] rounded-full">
-            <div 
-              className="h-full bg-purple-500 rounded-full" 
+            <div
+              className="h-full bg-purple-500 rounded-full"
               style={{ width: "80%" }}
             />
           </div>
@@ -207,12 +220,14 @@ export function ClipPreview({ project }: ClipPreviewProps) {
         {/* Creativity Slider */}
         <div className="space-y-1">
           <div className="flex justify-between items-center">
-            <span className="text-xs text-[hsl(var(--cine-text-muted))]">Creativity</span>
+            <span className="text-xs text-[hsl(var(--cine-text-muted))]">
+              Creativity
+            </span>
             <span className="text-xs text-purple-500">Medium</span>
           </div>
           <div className="w-full h-1.5 bg-[hsl(var(--cine-border))] rounded-full">
-            <div 
-              className="h-full bg-purple-500 rounded-full" 
+            <div
+              className="h-full bg-purple-500 rounded-full"
               style={{ width: "60%" }}
             />
           </div>
@@ -221,12 +236,14 @@ export function ClipPreview({ project }: ClipPreviewProps) {
         {/* Style Consistency Slider */}
         <div className="space-y-1">
           <div className="flex justify-between items-center">
-            <span className="text-xs text-[hsl(var(--cine-text-muted))]">Style Consistency</span>
+            <span className="text-xs text-[hsl(var(--cine-text-muted))]">
+              Style Consistency
+            </span>
             <span className="text-xs text-purple-500">High</span>
           </div>
           <div className="w-full h-1.5 bg-[hsl(var(--cine-border))] rounded-full">
-            <div 
-              className="h-full bg-purple-500 rounded-full" 
+            <div
+              className="h-full bg-purple-500 rounded-full"
               style={{ width: "85%" }}
             />
           </div>
