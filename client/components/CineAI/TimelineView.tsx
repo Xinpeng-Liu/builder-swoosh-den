@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Search, ZoomIn, Scissors, Trash2, Copy, Layers, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
