@@ -284,7 +284,7 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 className="absolute top-2 h-16 bg-[hsl(var(--cine-border))] border border-[hsl(var(--cine-card))] rounded-md overflow-hidden"
                 style={{
                   left: `${getClipPosition(clip.startTime)}px`,
-                  width: `${getClipWidth(clip.duration) * 4}px` // Audio clips are longer
+                  width: `${getClipWidth(clip.duration)}px`
                 }}
               >
                 <div className="h-10 bg-[hsl(var(--cine-card))] flex items-center justify-center">
