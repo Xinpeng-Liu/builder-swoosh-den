@@ -104,7 +104,7 @@ export default function Timeline() {
     setProject(updatedProject);
   };
 
-  const handleClipSelect = (clip: TimelineClip) => {
+  const handleClipSelect = (clip: TimelineClip | null) => {
     setSelectedClip(clip);
   };
 
