@@ -15,6 +15,10 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
   const [playheadPosition, setPlayheadPosition] = useState(113); // Default position from design
   const [isDragging, setIsDragging] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [trackWidth, setTrackWidth] = useState<number>(800);
+  const [draggingClipId, setDraggingClipId] = useState<string | null>(null);
+  const [dragOffsetPx, setDragOffsetPx] = useState<number>(0);
 
   const clipLibrary = [
     {
