@@ -240,17 +240,29 @@ export function ClipsView({ project, onProjectUpdate }: ClipsViewProps) {
         <div className="h-32 p-4 bg-[hsl(var(--cine-sidebar))] border border-[hsl(var(--cine-border))] rounded-lg mb-6">
           <div className="flex gap-3">
             {activeTab === "scenes" && mockScenes.map((scene) => (
-              <div key={scene.id} className="w-29 h-30 bg-[hsl(var(--cine-card))] rounded-lg overflow-hidden">
+              <div
+                key={scene.id}
+                className="w-29 h-30 bg-[hsl(var(--cine-card))] rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-purple-500 transition-all"
+                onClick={() => handleItemSelect(scene, "scene")}
+              >
                 <img src={scene.imageUrl} alt={scene.title} className="w-full h-full object-cover" />
               </div>
             ))}
             {activeTab === "characters" && mockCharacters.map((character) => (
-              <div key={character.id} className="w-29 h-30 bg-[hsl(var(--cine-card))] rounded-lg overflow-hidden">
+              <div
+                key={character.id}
+                className="w-29 h-30 bg-[hsl(var(--cine-card))] rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-purple-500 transition-all"
+                onClick={() => handleItemSelect(character, "character")}
+              >
                 <img src={character.imageUrl} alt={character.title} className="w-full h-full object-cover" />
               </div>
             ))}
             {activeTab === "plotBeats" && mockPlotBeats.map((plotBeat) => (
-              <div key={plotBeat.id} className="w-29 h-30 bg-[hsl(var(--cine-card))] rounded-lg p-2 flex items-center justify-center">
+              <div
+                key={plotBeat.id}
+                className="w-29 h-30 bg-[hsl(var(--cine-card))] rounded-lg p-2 flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-purple-500 transition-all"
+                onClick={() => handleItemSelect(plotBeat, "plotBeat")}
+              >
                 <span className="text-xs text-center text-[hsl(var(--cine-text-muted))]">{plotBeat.title}</span>
               </div>
             ))}
