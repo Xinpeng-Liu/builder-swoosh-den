@@ -61,7 +61,7 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
     {
       id: "timeline",
       label: "Timeline",
-      icon: <Clock className="w-4.5 h-4" />,
+      icon: <Clock className="w-4 h-4" />,
     },
     {
       id: "settings",
