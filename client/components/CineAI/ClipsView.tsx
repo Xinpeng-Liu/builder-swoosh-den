@@ -132,7 +132,7 @@ export function ClipsView({ project, onProjectUpdate }: ClipsViewProps) {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full overflow-y-auto">
       {/* Header */}
       <div className="p-5">
         <h2 className="text-xl font-normal text-white mb-4">Clip Builder Canvas</h2>
