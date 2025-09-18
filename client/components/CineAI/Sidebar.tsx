@@ -72,6 +72,22 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
 
   const handleItemClick = (itemId: string) => {
     setActiveItem(itemId);
+
+    // Navigate to the appropriate route
+    switch (itemId) {
+      case "scenes":
+        navigate("/cineai");
+        break;
+      case "characters":
+        navigate("/characters");
+        break;
+      case "plot":
+        navigate("/plot");
+        break;
+      default:
+        // For now, other items stay on the current page
+        break;
+    }
   };
 
   return (
