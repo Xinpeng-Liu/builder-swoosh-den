@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import CineAI from "./pages/CineAI";
 import Characters from "./pages/Characters";
 import Plot from "./pages/Plot";
+import Clips from "./pages/Clips";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
