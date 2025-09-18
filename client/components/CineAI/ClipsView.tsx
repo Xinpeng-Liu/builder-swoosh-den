@@ -139,68 +139,98 @@ export function ClipsView({ project, onProjectUpdate }: ClipsViewProps) {
         
         {/* Drop Zones */}
         <div className="flex gap-4 mb-6">
-          <div
-            className={cn(
-              "w-42 h-36 p-4 flex flex-col items-center justify-center border-2 rounded-lg cursor-pointer transition-colors",
-              project.scene
-                ? "border-purple-500 bg-purple-500/10"
-                : "border-dashed border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))] hover:border-purple-500"
-            )}
-            onClick={() => handleDropZoneClick("scene")}
-          >
-            {project.scene && project.scene.imageUrl ? (
-              <img src={project.scene.imageUrl} alt={project.scene.title} className="w-full h-full object-cover rounded-md" />
-            ) : (
-              <>
-                <Palette className="w-6 h-6 text-[hsl(var(--cine-text-muted))] mb-2" />
-                <span className="text-sm text-[hsl(var(--cine-text-muted))] text-center mb-2">
-                  {project.scene ? project.scene.title : "Drop Scene Here"}
-                </span>
-                {!project.scene && (
-                  <span className="text-xs text-purple-500">or Click to Select</span>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div
+                className={cn(
+                  "w-42 h-36 p-4 flex flex-col items-center justify-center border-2 rounded-lg cursor-pointer transition-colors",
+                  project.scene
+                    ? "border-purple-500 bg-purple-500/10"
+                    : "border-dashed border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))] hover:border-purple-500"
                 )}
-              </>
-            )}
-          </div>
-
-          <div
-            className={cn(
-              "w-42 h-36 p-4 flex flex-col items-center justify-center border-2 rounded-lg cursor-pointer transition-colors",
-              project.character
-                ? "border-purple-500 bg-purple-500/10"
-                : "border-dashed border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))] hover:border-purple-500"
-            )}
-            onClick={() => handleDropZoneClick("character")}
-          >
-            {project.character && project.character.imageUrl ? (
-              <img src={project.character.imageUrl} alt={project.character.title} className="w-full h-full object-cover rounded-md" />
-            ) : (
-              <>
-                <User className="w-5 h-6 text-[hsl(var(--cine-text-muted))] mb-2" />
-                <span className="text-sm text-[hsl(var(--cine-text-muted))] text-center mb-2">
-                  {project.character ? project.character.title : "Drop Character Here"}
-                </span>
-                {!project.character && (
-                  <span className="text-xs text-purple-500">or Click to Select</span>
+              >
+                {project.scene && project.scene.imageUrl ? (
+                  <img src={project.scene.imageUrl} alt={project.scene.title} className="w-full h-full object-cover rounded-md" />
+                ) : (
+                  <>
+                    <Palette className="w-6 h-6 text-[hsl(var(--cine-text-muted))] mb-2" />
+                    <span className="text-sm text-[hsl(var(--cine-text-muted))] text-center mb-2">
+                      {project.scene ? project.scene.title : "Drop Scene Here"}
+                    </span>
+                    {!project.scene && (
+                      <span className="text-xs text-purple-500">or Click to Select</span>
+                    )}
+                  </>
                 )}
-              </>
-            )}
-          </div>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" side="bottom" className="w-48 bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))]">
+              {mockScenes.map((scene) => (
+                <DropdownMenuItem key={scene.id} onSelect={() => handleItemSelect(scene, "scene")} className="text-white focus:bg-[hsl(var(--cine-sidebar))]">
+                  {scene.title}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-          <div
-            className={cn(
-              "w-42 h-36 p-4 flex flex-col items-center justify-center border-2 rounded-lg cursor-pointer transition-colors",
-              project.plotBeat
-                ? "border-purple-500 bg-purple-500/10"
-                : "border-dashed border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))] hover:border-purple-500"
-            )}
-            onClick={() => handleDropZoneClick("plotBeat")}
-          >
-            <BookOpen className="w-7 h-6 text-[hsl(var(--cine-text-muted))] mb-2" />
-            <span className="text-sm text-[hsl(var(--cine-text-muted))] text-center">
-              {project.plotBeat ? project.plotBeat.title : "Drop Plot Beat Here"}
-            </span>
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div
+                className={cn(
+                  "w-42 h-36 p-4 flex flex-col items-center justify-center border-2 rounded-lg cursor-pointer transition-colors",
+                  project.character
+                    ? "border-purple-500 bg-purple-500/10"
+                    : "border-dashed border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))] hover:border-purple-500"
+                )}
+              >
+                {project.character && project.character.imageUrl ? (
+                  <img src={project.character.imageUrl} alt={project.character.title} className="w-full h-full object-cover rounded-md" />
+                ) : (
+                  <>
+                    <User className="w-5 h-6 text-[hsl(var(--cine-text-muted))] mb-2" />
+                    <span className="text-sm text-[hsl(var(--cine-text-muted))] text-center mb-2">
+                      {project.character ? project.character.title : "Drop Character Here"}
+                    </span>
+                    {!project.character && (
+                      <span className="text-xs text-purple-500">or Click to Select</span>
+                    )}
+                  </>
+                )}
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" side="bottom" className="w-56 bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))]">
+              {mockCharacters.map((character) => (
+                <DropdownMenuItem key={character.id} onSelect={() => handleItemSelect(character, "character")} className="text-white focus:bg-[hsl(var(--cine-sidebar))]">
+                  {character.title}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div
+                className={cn(
+                  "w-42 h-36 p-4 flex flex-col items-center justify-center border-2 rounded-lg cursor-pointer transition-colors",
+                  project.plotBeat
+                    ? "border-purple-500 bg-purple-500/10"
+                    : "border-dashed border-[hsl(var(--cine-border))] bg-[hsl(var(--cine-sidebar))] hover:border-purple-500"
+                )}
+              >
+                <BookOpen className="w-7 h-6 text-[hsl(var(--cine-text-muted))] mb-2" />
+                <span className="text-sm text-[hsl(var(--cine-text-muted))] text-center">
+                  {project.plotBeat ? project.plotBeat.title : "Drop Plot Beat Here"}
+                </span>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" side="bottom" className="w-56 bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))]">
+              {mockPlotBeats.map((beat) => (
+                <DropdownMenuItem key={beat.id} onSelect={() => handleItemSelect(beat, "plotBeat")} className="text-white focus:bg-[hsl(var(--cine-sidebar))]">
+                  {beat.title}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Tabs */}
