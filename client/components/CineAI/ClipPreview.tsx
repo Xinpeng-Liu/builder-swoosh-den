@@ -136,10 +136,31 @@ export function ClipPreview({ project }: ClipPreviewProps) {
                     {item.timestamp}
                   </span>
                   
-                  <div className="p-2 bg-[hsl(var(--cine-card))] rounded-md space-y-1">
-                    <div className="h-4 bg-[hsl(var(--cine-border))] rounded opacity-20" />
-                    <div className="h-4 bg-[hsl(var(--cine-border))] rounded opacity-20" />
-                    <div className="h-4 bg-[hsl(var(--cine-border))] rounded opacity-20 w-3/4" />
+                  <div className="p-3 bg-[hsl(var(--cine-card))] rounded-md space-y-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm text-white font-medium truncate pr-2">{item.title}</h4>
+                      <span className={cn("text-xs capitalize", getStatusColor(item.status))}>{item.status}</span>
+                    </div>
+                    <p className="text-xs text-[hsl(var(--cine-text-muted))] leading-4">
+                      {item.description}
+                    </p>
+                    <div className="flex gap-2 pt-1">
+                      {item.length && (
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-[hsl(var(--cine-border))]/30 text-[hsl(var(--cine-text-secondary))]">
+                          {item.length}
+                        </span>
+                      )}
+                      {item.resolution && (
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-[hsl(var(--cine-border))]/30 text-[hsl(var(--cine-text-secondary))]">
+                          {item.resolution}
+                        </span>
+                      )}
+                      {item.size && (
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-[hsl(var(--cine-border))]/30 text-[hsl(var(--cine-text-secondary))]">
+                          {item.size}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
