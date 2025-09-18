@@ -18,8 +18,12 @@ interface SidebarItem {
   isActive?: boolean;
 }
 
-export function Sidebar() {
-  const [activeItem, setActiveItem] = useState("scenes");
+interface SidebarProps {
+  activeItem?: string;
+}
+
+export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
+  const [activeItem, setActiveItem] = useState(propActiveItem || "scenes");
 
   const menuItems: SidebarItem[] = [
     {
