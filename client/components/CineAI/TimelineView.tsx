@@ -194,15 +194,22 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
               setIsDragOver(false);
               e.preventDefault();
               try {
-                const clipData = JSON.parse(e.dataTransfer.getData("application/json"));
+                const json = e.dataTransfer.getData("application/json") || e.dataTransfer.getData("text/plain");
+                if (!json) return; // Nothing to drop
+                const clipData = JSON.parse(json);
+                if (!clipData || !clipData.id) return;
                 const rect = e.currentTarget.getBoundingClientRect();
                 const dropPosition = e.clientX - rect.left;
                 const dropTime = (dropPosition / rect.width) * project.duration;
 
                 const newClip: TimelineClip = {
-                  ...clipData,
                   id: `v_${Date.now()}`,
+                  title: clipData.title || "Clip",
+                  duration: clipData.duration || "0:10",
                   startTime: Math.max(0, dropTime),
+                  type: "video",
+                  imageUrl: clipData.imageUrl,
+                  content: clipData.content,
                   track: 0
                 };
 
@@ -211,12 +218,10 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                   video: [...project.tracks.video, newClip]
                 };
 
-                onProjectUpdate({
-                  ...project,
-                  tracks: updatedTracks
-                });
-              } catch (error) {
-                console.error("Error dropping clip:", error);
+                onProjectUpdate({ ...project, tracks: updatedTracks });
+              } catch (_) {
+                // Ignore malformed drops silently
+                return;
               }
             }}
           >
