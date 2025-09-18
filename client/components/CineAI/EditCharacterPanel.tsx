@@ -139,6 +139,7 @@ export function EditCharacterPanel({ character, onClose, onCharacterUpdate }: Ed
                 <SelectItem value="Antagonist">Antagonist</SelectItem>
                 <SelectItem value="Supporting">Supporting</SelectItem>
                 <SelectItem value="Mentor">Mentor</SelectItem>
+                <SelectItem value="Ally">Ally</SelectItem>
                 <SelectItem value="Comic Relief">Comic Relief</SelectItem>
               </SelectContent>
             </Select>
