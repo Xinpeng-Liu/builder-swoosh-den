@@ -84,7 +84,7 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
                 onClick={() => handleItemClick(item.id)}
                 className={cn(
                   "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors",
-                  activeItem === item.id || item.isActive
+                  (propActiveItem ? propActiveItem === item.id : activeItem === item.id) || item.isActive
                     ? "bg-[hsl(var(--cine-card))] text-white"
                     : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white"
                 )}
