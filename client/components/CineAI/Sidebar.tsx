@@ -1,5 +1,4 @@
 import {
-  Folder,
   Image,
   Users,
   BookOpen,
@@ -30,16 +29,6 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
 
   const menuItems: SidebarItem[] = [
     {
-      id: "projects",
-      label: "Projects",
-      icon: <Folder className="w-4 h-4" />,
-    },
-    {
-      id: "library",
-      label: "Library",
-      icon: <Image className="w-5 h-4" />,
-    },
-    {
       id: "scenes",
       label: "Scenes",
       icon: <Image className="w-4 h-4" />,
@@ -67,7 +56,7 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
     {
       id: "export",
       label: "Export",
-      icon: <FileText className="w-4.5 h-4" />,
+      icon: <FileText className="w-4 h-4" />,
     },
     {
       id: "settings",
@@ -117,7 +106,7 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
                 className={cn(
                   "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors",
                   (propActiveItem ? propActiveItem === item.id : activeItem === item.id) || item.isActive
-                    ? "bg-[hsl(var(--cine-card))] text-white"
+                    ? "bg-blue-500 text-white"
                     : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white"
                 )}
               >
