@@ -8,7 +8,7 @@ interface TimelineViewProps {
   project: TimelineProject;
   selectedClip: TimelineClip | null;
   onProjectUpdate: (project: TimelineProject) => void;
-  onClipSelect: (clip: TimelineClip) => void;
+  onClipSelect: (clip: TimelineClip | null) => void;
 }
 
 export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSelect }: TimelineViewProps) {
