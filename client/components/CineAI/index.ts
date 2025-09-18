@@ -8,3 +8,5 @@ export { EditCharacterPanel } from './EditCharacterPanel';
 export { PlotView } from './PlotView';
 export { EditPlotPanel } from './EditPlotPanel';
 export { ScriptPreview } from './ScriptPreview';
+export { ClipsView } from './ClipsView';
+export { ClipPreview } from './ClipPreview';
