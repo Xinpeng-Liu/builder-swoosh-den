@@ -187,8 +187,9 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
             <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">Video</span>
           </div>
           <div
+            ref={trackRef}
             className={cn(
-              "flex-1 relative p-2 transition-colors",
+              "flex-1 relative p-2 transition-colors overflow-hidden",
               isDragOver && "bg-purple-500/10 border-2 border-dashed border-purple-500"
             )}
             onDragOver={(e) => {
