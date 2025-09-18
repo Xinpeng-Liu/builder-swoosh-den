@@ -87,6 +87,9 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
       case "clips":
         navigate("/clips");
         break;
+      case "timeline":
+        navigate("/timeline");
+        break;
       default:
         // For now, other items stay on the current page
         break;
