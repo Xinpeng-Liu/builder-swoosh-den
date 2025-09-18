@@ -281,9 +281,6 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                 </div>
               </div>
             ))}
-            {/* Transition markers */}
-            <div className="absolute top-8 left-36 w-2 h-8 bg-orange-500 rounded-sm"></div>
-            <div className="absolute top-8 left-80 w-2 h-8 bg-orange-500 rounded-sm"></div>
           </div>
         </div>
 
