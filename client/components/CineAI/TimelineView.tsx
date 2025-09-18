@@ -336,8 +336,34 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
           </div>
         </div>
 
+        {/* Dragging Clip Logic overlay */}
+        {draggingClipId && (
+          <div
+            className="absolute inset-0"
+            onMouseMove={(e) => {
+              const rect = trackRef.current?.getBoundingClientRect();
+              if (!rect) return;
+              const px = e.clientX - rect.left - dragOffsetPx;
+              const newStart = Math.max(0, Math.min(pxToSeconds(px), project.duration));
+              const idx = project.tracks.video.findIndex((c) => c.id === draggingClipId);
+              if (idx >= 0) {
+                const clip = project.tracks.video[idx];
+                const clipLen = parseDurationToSeconds(clip.duration);
+                const clamped = Math.max(0, Math.min(newStart, project.duration - clipLen));
+                const updated = { ...project };
+                updated.tracks = {
+                  ...updated.tracks,
+                  video: updated.tracks.video.map((c) => (c.id === draggingClipId ? { ...c, startTime: clamped } : c)),
+                } as any;
+                onProjectUpdate(updated);
+              }
+            }}
+            onMouseUp={() => setDraggingClipId(null)}
+          />
+        )}
+
         {/* Playhead */}
-        <div 
+        <div
           className="absolute top-0 bottom-0 w-0.5 bg-purple-500 cursor-col-resize z-10"
           style={{ left: `${playheadPosition}px` }}
           onMouseDown={handlePlayheadDrag}
