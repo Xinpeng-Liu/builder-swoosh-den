@@ -105,7 +105,7 @@ export default function CineAI() {
       {/* Main Layout */}
       <div className="flex h-[calc(100vh-56px)]">
         {/* Sidebar */}
-        <Sidebar />
+        <Sidebar activeItem="scenes" />
         
         {/* Main Content Area */}
         <div className="flex flex-1">
