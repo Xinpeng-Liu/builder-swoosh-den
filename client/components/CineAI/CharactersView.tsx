@@ -26,9 +26,10 @@ interface CharactersViewProps {
 
 const roleColors: Record<string, string> = {
   "Protagonist": "bg-blue-500",
-  "Antagonist": "bg-red-500", 
+  "Antagonist": "bg-pink-500", 
   "Mentor": "bg-orange-500",
-  "Supporting": "bg-green-500",
+  "Ally": "bg-green-500",
+  "Supporting": "bg-purple-500",
 };
 
 export function CharactersView({ characters, onCharacterSelect, selectedCharacterId }: CharactersViewProps) {
@@ -40,23 +41,9 @@ export function CharactersView({ characters, onCharacterSelect, selectedCharacte
           <h2 className="text-xl font-normal text-white font-['Lexend']">
             Characters
           </h2>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" className="text-[hsl(var(--cine-text-muted))] hover:text-white p-1">
-              <Grid3X3 className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" size="sm" className="text-[hsl(var(--cine-text-muted))] hover:text-white p-1">
-              <List className="w-4 h-4" />
-            </Button>
-          </div>
         </div>
         
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-[hsl(var(--cine-text-muted))]">Filter: Role</span>
-            <Button variant="ghost" size="sm" className="text-[hsl(var(--cine-text-muted))] hover:text-white p-1">
-              <Filter className="w-4 h-4" />
-            </Button>
-          </div>
           <Button 
             className="bg-[hsl(var(--cine-purple))] hover:bg-[hsl(var(--cine-purple))]/90 text-white h-8 px-4 gap-2"
             size="sm"
@@ -68,7 +55,7 @@ export function CharactersView({ characters, onCharacterSelect, selectedCharacte
       </div>
 
       {/* Characters Grid */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-3 gap-6">
         {characters.map((character) => (
           <CharacterCard
             key={character.id}
@@ -79,13 +66,15 @@ export function CharactersView({ characters, onCharacterSelect, selectedCharacte
         ))}
         
         {/* Add New Character Card */}
-        <div className="flex flex-col items-center justify-center p-8 rounded-lg border-2 border-dashed border-[hsl(var(--cine-border))] hover:border-[hsl(var(--cine-purple))]/50 cursor-pointer transition-colors group">
-          <Plus className="w-6 h-6 text-[hsl(var(--cine-text-muted))] group-hover:text-[hsl(var(--cine-purple))] mb-2" />
-          <span className="text-sm text-[hsl(var(--cine-text-muted))] group-hover:text-white">
+        <div className="flex flex-col items-center justify-center p-8 rounded-xl border-2 border-dashed border-[hsl(var(--cine-border))] hover:border-[hsl(var(--cine-purple))]/50 cursor-pointer transition-colors group bg-[hsl(var(--cine-sidebar))]">
+          <div className="w-12 h-12 rounded-full bg-[hsl(var(--cine-card))] flex items-center justify-center mb-3 group-hover:bg-[hsl(var(--cine-purple))]/20 transition-colors">
+            <Plus className="w-4.5 h-5 text-[hsl(var(--cine-purple))]" />
+          </div>
+          <span className="text-sm font-medium text-white mb-1">
             Add New Character
           </span>
-          <p className="text-xs text-[hsl(var(--cine-text-muted))] mt-1 text-center">
-            Create a new character for your film
+          <p className="text-xs text-[hsl(var(--cine-text-muted))] text-center leading-4">
+            Create a new character<br />for your film
           </p>
         </div>
       </div>
@@ -105,73 +94,64 @@ function CharacterCard({ character, isSelected, onClick }: CharacterCardProps) {
   return (
     <div 
       className={cn(
-        "relative p-4 rounded-lg border cursor-pointer transition-all hover:border-[hsl(var(--cine-purple))]/50",
+        "relative rounded-xl border cursor-pointer transition-all hover:border-[hsl(var(--cine-purple))]/50",
         "bg-[hsl(var(--cine-sidebar))]",
         isSelected 
-          ? "border-[hsl(var(--cine-blue))]" 
+          ? "border-[hsl(var(--cine-purple))]" 
           : "border-[hsl(var(--cine-border))]"
       )}
       onClick={onClick}
     >
-      {/* Options Menu */}
-      <button className="absolute top-3 right-3 p-1 rounded hover:bg-[hsl(var(--cine-card))] transition-colors">
-        <MoreHorizontal className="w-4 h-4 text-[hsl(var(--cine-text-muted))]" />
-      </button>
-
       {/* Character Image */}
-      <div className="w-full h-48 rounded bg-[hsl(var(--cine-card))] mb-4 overflow-hidden">
+      <div className="relative w-full h-48 rounded-t-xl overflow-hidden bg-[hsl(var(--cine-card))]">
         <img 
           src={character.imageUrl} 
           alt={character.name}
           className="w-full h-full object-cover"
         />
-      </div>
-
-      {/* Character Info */}
-      <div className="space-y-3">
-        {/* Name and Role */}
-        <div>
-          <h3 className="text-white font-medium text-lg mb-1">
-            {character.name}
-          </h3>
+        {/* Role Badge */}
+        <div className="absolute top-2 right-2">
           <span className={cn(
-            "inline-block px-2 py-1 rounded text-xs text-white",
+            "inline-block px-2 py-1 rounded-full text-xs text-white font-medium",
             roleColor
           )}>
             {character.role}
           </span>
         </div>
+      </div>
 
-        {/* Details */}
-        {character.details && (
-          <div className="space-y-1">
-            {character.details.hairColor && (
-              <div className="text-xs text-[hsl(var(--cine-text-muted))]">
-                {character.details.hairColor}
-              </div>
-            )}
-            {character.details.occupation && (
-              <div className="text-xs text-[hsl(var(--cine-text-muted))]">
-                {character.details.occupation}
-              </div>
-            )}
-            {character.details.status && (
-              <div className="text-xs text-[hsl(var(--cine-text-muted))]">
-                {character.details.status}
-              </div>
-            )}
-          </div>
-        )}
+      {/* Character Info */}
+      <div className="p-4">
+        {/* Name */}
+        <h3 className="text-white font-medium text-base mb-3">
+          {character.name}
+        </h3>
+
+        {/* Personality Tags */}
+        <div className="flex flex-wrap gap-1 mb-4">
+          {character.personality.slice(0, 3).map((trait, index) => (
+            <span
+              key={index}
+              className="inline-block px-2 py-1 rounded text-xs bg-[hsl(var(--cine-card))] text-gray-300"
+            >
+              {trait}
+            </span>
+          ))}
+        </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-2">
+        <div className="flex items-center justify-between">
           <Button
             size="sm"
-            variant="outline"
-            className="text-xs bg-[hsl(var(--cine-card))] border-[hsl(var(--cine-border))] text-[hsl(var(--cine-text-secondary))] hover:bg-[hsl(var(--cine-card))]/80 hover:text-white"
+            variant="ghost"
+            className="text-xs text-[hsl(var(--cine-purple))] hover:text-[hsl(var(--cine-purple))]/80 hover:bg-transparent p-0 h-auto"
           >
             Edit
           </Button>
+          
+          <button className="p-1 rounded hover:bg-[hsl(var(--cine-card))] transition-colors">
+            <MoreHorizontal className="w-4 h-4 text-[hsl(var(--cine-text-muted))]" />
+          </button>
         </div>
       </div>
     </div>
