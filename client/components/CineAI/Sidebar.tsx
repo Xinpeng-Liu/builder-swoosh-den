@@ -98,11 +98,12 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
               <li key={item.id}>
                 <a
                   href={href}
+                  aria-current={isActive ? "page" : undefined}
                   onClick={() => handleItemClick(item.id)}
                   className={cn(
-                    "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors",
+                    "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-blue))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--cine-sidebar))]",
                     isActive
-                      ? "bg-blue-500 text-white"
+                      ? "bg-[hsl(var(--cine-blue))] text-white"
                       : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white"
                   )}
                 >
