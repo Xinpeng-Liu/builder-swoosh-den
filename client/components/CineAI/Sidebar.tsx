@@ -1,15 +1,16 @@
-import { 
-  Folder, 
-  Image, 
-  Users, 
-  BookOpen, 
-  Film, 
-  Clock, 
+import {
+  Folder,
+  Image,
+  Users,
+  BookOpen,
+  Film,
+  Clock,
   Settings,
   Lightbulb
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface SidebarItem {
   id: string;
