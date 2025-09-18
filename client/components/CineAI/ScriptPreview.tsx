@@ -213,14 +213,14 @@ export function ScriptPreview({ plotPoint }: ScriptPreviewProps) {
               <Maximize2 className="w-4 h-4 text-[hsl(var(--cine-text-muted))]" />
             </button>
           </DialogTrigger>
-          <DialogContent className="w-screen max-w-none h-[92vh] bg-[hsl(var(--cine-bg))] text-[hsl(var(--cine-text))] border-[hsl(var(--cine-border))] sm:rounded-md p-0 overflow-hidden">
-            <div className="h-full flex flex-col">
-              <div className="p-4 border-b border-[hsl(var(--cine-border))] flex items-center justify-between">
+          <DialogContent className="w-screen max-w-none h-[92vh] bg-[hsl(var(--cine-bg))] text-[hsl(var(--cine-text))] border-[hsl(var(--cine-border))] sm:rounded-md p-0 overflow-y-auto">
+            <div>
+              <div className="p-4 border-b border-[hsl(var(--cine-border))] flex items-center justify-between sticky top-0 bg-[hsl(var(--cine-bg))] z-10">
                 <h3 className="text-base md:text-lg font-medium text-white">
                   Script — Fullscreen
                 </h3>
               </div>
-              <div className="flex-1 overflow-y-auto p-6">
+              <div className="p-6">
                 <ScriptBody plotPoint={plotPoint} compact={false} />
               </div>
             </div>
