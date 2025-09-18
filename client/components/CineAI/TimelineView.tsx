@@ -64,6 +64,17 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
     console.log("Add track clicked");
   };
 
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      setTrackWidth(el.clientWidth || 800);
+    });
+    ro.observe(el);
+    setTrackWidth(el.clientWidth || 800);
+    return () => ro.disconnect();
+  }, []);
+
   const handlePlayheadDrag = (e: React.MouseEvent) => {
     setIsDragging(true);
     const container = (e.currentTarget as HTMLDivElement).parentElement as HTMLElement | null;
