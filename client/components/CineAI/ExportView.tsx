@@ -11,9 +11,9 @@ import {
   Film,
   Image as ImageIcon,
   Video,
-  TikTok,
-  Youtube,
-  Instagram,
+  Music,
+  Tv,
+  Camera,
   Plus,
   ChevronRight,
   FolderOpen,
@@ -341,21 +341,21 @@ export function ExportView() {
           <div className="space-y-3">
             <Button variant="ghost" className="w-full justify-between bg-[hsl(var(--cine-card))] hover:bg-[hsl(var(--cine-card))]/80">
               <div className="flex items-center gap-3">
-                <TikTok className="w-3.5 h-4" />
+                <Music className="w-3.5 h-4 text-white" />
                 <span className="text-gray-200">TikTok</span>
               </div>
               <ChevronRight className="w-3 h-3 text-gray-400" />
             </Button>
             <Button variant="ghost" className="w-full justify-between bg-[hsl(var(--cine-card))] hover:bg-[hsl(var(--cine-card))]/80">
               <div className="flex items-center gap-3">
-                <Youtube className="w-4.5 h-4 text-red-500" />
+                <Tv className="w-4.5 h-4 text-red-500" />
                 <span className="text-gray-200">YouTube</span>
               </div>
               <ChevronRight className="w-3 h-3 text-gray-400" />
             </Button>
             <Button variant="ghost" className="w-full justify-between bg-[hsl(var(--cine-card))] hover:bg-[hsl(var(--cine-card))]/80">
               <div className="flex items-center gap-3">
-                <Instagram className="w-3.5 h-4 text-pink-500" />
+                <Camera className="w-3.5 h-4 text-pink-500" />
                 <span className="text-gray-200">Instagram</span>
               </div>
               <ChevronRight className="w-3 h-3 text-gray-400" />
