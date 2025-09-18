@@ -333,10 +333,20 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
         
         <div className="flex gap-4 overflow-x-auto">
           {clipLibrary.map((clip) => (
-            <div key={clip.id} className="min-w-34 bg-[hsl(var(--cine-card))] rounded-md overflow-hidden">
+            <div
+              key={clip.id}
+              className="min-w-34 bg-[hsl(var(--cine-card))] rounded-md overflow-hidden cursor-grab hover:bg-[hsl(var(--cine-card))]/80 transition-colors"
+              draggable
+              onDragStart={(e) => {
+                e.dataTransfer.setData("application/json", JSON.stringify({
+                  ...clip,
+                  type: "video"
+                }));
+              }}
+            >
               <div className="relative h-20">
-                <img 
-                  src={clip.imageUrl} 
+                <img
+                  src={clip.imageUrl}
                   alt={clip.title}
                   className="w-full h-full object-cover"
                 />
@@ -348,6 +358,7 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
                     variant="ghost"
                     size="sm"
                     className="w-8 h-8 rounded-full bg-[hsl(var(--cine-card))] text-[hsl(var(--cine-text-muted))] hover:text-white"
+                    onClick={() => console.log(`Play clip: ${clip.title}`)}
                   >
                     <svg width="14" height="16" viewBox="0 0 12 16" fill="none">
                       <path d="M2.28125 1.21872C1.81875 0.934346 1.2375 0.924971 0.765625 1.1906C0.29375 1.45622 0 1.95622 0 2.49997V13.5C0 14.0437 0.29375 14.5437 0.765625 14.8093C1.2375 15.075 1.81875 15.0625 2.28125 14.7812L11.2812 9.28122C11.7281 9.00935 12 8.52497 12 7.99997C12 7.47497 11.7281 6.99372 11.2812 6.71872L2.28125 1.21872Z" fill="white"/>
