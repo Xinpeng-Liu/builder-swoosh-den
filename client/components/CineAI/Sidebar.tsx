@@ -6,6 +6,7 @@ import {
   Film,
   Clock,
   Settings,
+  FileText,
   Lightbulb
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -64,6 +65,11 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
       icon: <Clock className="w-4 h-4" />,
     },
     {
+      id: "export",
+      label: "Export",
+      icon: <FileText className="w-4.5 h-4" />,
+    },
+    {
       id: "settings",
       label: "Settings",
       icon: <Settings className="w-4 h-4" />,
@@ -89,6 +95,9 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
         break;
       case "timeline":
         navigate("/timeline");
+        break;
+      case "export":
+        navigate("/export");
         break;
       default:
         // For now, other items stay on the current page
@@ -129,7 +138,7 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
           </span>
         </div>
         <p className="text-xs text-[hsl(var(--cine-text-muted))] leading-4">
-          Create atmospheric scenes with specific lighting details to enhance the mood of your film.
+          Export in multiple formats to reach different platforms and audiences.
         </p>
       </div>
     </aside>

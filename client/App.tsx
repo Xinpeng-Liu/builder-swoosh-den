@@ -12,6 +12,7 @@ import Characters from "./pages/Characters";
 import Plot from "./pages/Plot";
 import Clips from "./pages/Clips";
 import Timeline from "./pages/Timeline";
+import Export from "./pages/Export";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/plot" element={<Plot />} />
           <Route path="/clips" element={<Clips />} />
           <Route path="/timeline" element={<Timeline />} />
+          <Route path="/export" element={<Export />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
