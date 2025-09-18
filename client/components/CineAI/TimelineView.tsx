@@ -14,6 +14,7 @@ interface TimelineViewProps {
 export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSelect }: TimelineViewProps) {
   const [playheadPosition, setPlayheadPosition] = useState(113); // Default position from design
   const [isDragging, setIsDragging] = useState(false);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const clipLibrary = [
     {
