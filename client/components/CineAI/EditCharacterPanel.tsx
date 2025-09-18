@@ -42,7 +42,7 @@ export function EditCharacterPanel({ character, onClose, onCharacterUpdate }: Ed
   const [newPersonalityTag, setNewPersonalityTag] = useState("");
   const [voiceVolume, setVoiceVolume] = useState([0.08]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setEditedCharacter(character);
   }, [character]);
 
