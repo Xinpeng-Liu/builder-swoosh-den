@@ -40,7 +40,6 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
       id: "scenes",
       label: "Scenes",
       icon: <Image className="w-4 h-4" />,
-      isActive: true,
     },
     {
       id: "characters",
