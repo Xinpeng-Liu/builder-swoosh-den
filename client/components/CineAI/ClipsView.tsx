@@ -66,7 +66,7 @@ export function ClipsView({ project, onProjectUpdate }: ClipsViewProps) {
     // For now, just set a mock element
     const mockData = {
       scene: { id: "1", type: "scene" as const, title: "Futuristic City", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/dfe9dab9ac4d667b29a86b0d6ef29dab1153e28c?width=116" },
-      character: { id: "1", type: "character" as const, title: "Nova Chen", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/c2f5b30ad60115d9f5e9e5d57b1d2de29dacfb46?width=116" },
+      character: { id: "1", type: "character" as const, title: "Nova Chen", imageUrl: "https://api.builder.io/api/v1/image/assets/TEMP/5821b6aa396b0511f311c392689060b59165fad7?width=116" },
       plotBeat: { id: "1", type: "plotBeat" as const, title: "Opening Scene" }
     };
 
