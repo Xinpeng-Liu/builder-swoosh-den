@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface SidebarItem {
   id: string;
@@ -25,7 +24,6 @@ interface SidebarProps {
 
 export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
   const [activeItem, setActiveItem] = useState(propActiveItem || "scenes");
-  const navigate = useNavigate();
 
   const menuItems: SidebarItem[] = [
     {
@@ -65,33 +63,27 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
     },
   ];
 
-  const handleItemClick = (itemId: string) => {
-    setActiveItem(itemId);
-
-    // Navigate to the appropriate route
+  const getPathForItem = (itemId: string) => {
     switch (itemId) {
       case "scenes":
-        navigate("/cineai");
-        break;
+        return "/cineai";
       case "characters":
-        navigate("/characters");
-        break;
+        return "/characters";
       case "plot":
-        navigate("/plot");
-        break;
+        return "/plot";
       case "clips":
-        navigate("/clips");
-        break;
+        return "/clips";
       case "timeline":
-        navigate("/timeline");
-        break;
+        return "/timeline";
       case "export":
-        navigate("/export");
-        break;
+        return "/export";
       default:
-        // For now, other items stay on the current page
-        break;
+        return "#";
     }
+  };
+
+  const handleItemClick = (itemId: string) => {
+    setActiveItem(itemId);
   };
 
   return (
@@ -99,22 +91,27 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
       {/* Navigation Menu */}
       <nav className="flex-1 p-4">
         <ul className="space-y-1">
-          {menuItems.map((item) => (
-            <li key={item.id}>
-              <button
-                onClick={() => handleItemClick(item.id)}
-                className={cn(
-                  "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors",
-                  (propActiveItem ? propActiveItem === item.id : activeItem === item.id) || item.isActive
-                    ? "bg-blue-500 text-white"
-                    : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white"
-                )}
-              >
-                <span className="flex-shrink-0">{item.icon}</span>
-                <span>{item.label}</span>
-              </button>
-            </li>
-          ))}
+          {menuItems.map((item) => {
+            const href = getPathForItem(item.id);
+            const isActive = (propActiveItem ? propActiveItem === item.id : activeItem === item.id) || item.isActive;
+            return (
+              <li key={item.id}>
+                <a
+                  href={href}
+                  onClick={() => handleItemClick(item.id)}
+                  className={cn(
+                    "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors",
+                    isActive
+                      ? "bg-blue-500 text-white"
+                      : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white"
+                  )}
+                >
+                  <span className="flex-shrink-0">{item.icon}</span>
+                  <span>{item.label}</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
