@@ -171,7 +171,38 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
           <div className="w-20 bg-[hsl(var(--cine-card))] border-r border-[hsl(var(--cine-border))] flex items-center justify-center">
             <span className="text-sm font-medium text-[hsl(var(--cine-text-muted))]">Video</span>
           </div>
-          <div className="flex-1 relative p-2">
+          <div
+            className="flex-1 relative p-2"
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => {
+              e.preventDefault();
+              try {
+                const clipData = JSON.parse(e.dataTransfer.getData("application/json"));
+                const rect = e.currentTarget.getBoundingClientRect();
+                const dropPosition = e.clientX - rect.left;
+                const dropTime = (dropPosition / rect.width) * project.duration;
+
+                const newClip: TimelineClip = {
+                  ...clipData,
+                  id: `v_${Date.now()}`,
+                  startTime: Math.max(0, dropTime),
+                  track: 0
+                };
+
+                const updatedTracks = {
+                  ...project.tracks,
+                  video: [...project.tracks.video, newClip]
+                };
+
+                onProjectUpdate({
+                  ...project,
+                  tracks: updatedTracks
+                });
+              } catch (error) {
+                console.error("Error dropping clip:", error);
+              }
+            }}
+          >
             {project.tracks.video.map((clip) => (
               <div
                 key={clip.id}
