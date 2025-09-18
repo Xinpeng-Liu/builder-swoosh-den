@@ -236,14 +236,20 @@ export function TimelineView({ project, selectedClip, onProjectUpdate, onClipSel
               <div
                 key={clip.id}
                 className={cn(
-                  "absolute top-2 h-20 bg-[hsl(var(--cine-border))] border border-[hsl(var(--cine-card))] rounded-md overflow-hidden cursor-pointer",
+                  "absolute top-2 h-20 bg-[hsl(var(--cine-border))] border border-[hsl(var(--cine-card))] rounded-md overflow-hidden cursor-move select-none",
                   selectedClip?.id === clip.id && "ring-2 ring-purple-500"
                 )}
                 style={{
                   left: `${getClipPosition(clip.startTime)}px`,
                   width: `${getClipWidth(clip.duration)}px`
                 }}
-                onClick={() => onClipSelect(clip)}
+                onMouseDown={(e) => {
+                  const rect = trackRef.current?.getBoundingClientRect();
+                  const clipLeftPx = getClipPosition(clip.startTime);
+                  setDraggingClipId(clip.id);
+                  setDragOffsetPx(e.clientX - (rect ? rect.left : 0) - clipLeftPx);
+                  onClipSelect(clip);
+                }}
               >
                 <div className="relative h-14 bg-[hsl(var(--cine-card))]">
                   {clip.imageUrl && (
