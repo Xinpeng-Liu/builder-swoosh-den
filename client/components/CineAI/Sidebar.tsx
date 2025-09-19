@@ -104,9 +104,9 @@ export function Sidebar({ activeItem: propActiveItem }: SidebarProps = {}) {
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => handleItemClick(item.id)}
                   className={cn(
-                    "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-blue))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--cine-sidebar))]",
+                    "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cine-purple))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--cine-sidebar))]",
                     isActive
-                      ? "bg-[hsl(var(--cine-blue))] text-white"
+                      ? "bg-[hsl(var(--cine-purple))] text-white"
                       : "text-[hsl(var(--cine-text-muted))] hover:bg-[hsl(var(--cine-card))] hover:text-white",
                   )}
                 >
